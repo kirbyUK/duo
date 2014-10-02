@@ -18,6 +18,7 @@
 #include "block/block.h"
 #include "block/staticBlock.h"
 #include "player/player.h"
+#include "sound/music.h"
 
 int main()
 {
@@ -25,15 +26,19 @@ int main()
 	if(! Player::init())
 		return -1;
 
+	if(! Music::init())
+		return -1;
+
 	//Make the two characters, which are both controlled by the player:
 	Player p1(200, 100), p2(400, 200);
 
 	//Make the window:
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Reflect",
+	sf::RenderWindow window(sf::VideoMode(600, 400), "Reflect",
 		sf::Style::Close);
 	sf::Event event;
 
-	StaticBlock b(800, 25, 0, 575);
+	StaticBlock b(600, 25, 0, 375);
+	Music music;
 
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;

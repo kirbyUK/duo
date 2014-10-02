@@ -20,12 +20,16 @@
 sf::Music Music::_music;
 
 //The filepath to the music, with backticks for Windows:
+#ifndef ASSETS
+	#define ASSETS "./assets"
+#endif
+
 #ifdef _WIN32
 	const std::string Music::MUSIC_PATH = 
-		(((std::string)ASSETS) + ((std::string)"\\music\\music.wav"));
+		(((std::string)ASSETS) + ((std::string)"\\music\\mIRROR.ogg"));
 #else
 	const std::string Music::MUSIC_PATH =
-		(((std::string)ASSETS) + ((std::string)"/music/music.wav"));
+		(((std::string)ASSETS) + ((std::string)"/music/mIRROR.ogg"));
 #endif
 
 //Attempts to open the music, must be called before the constructor:

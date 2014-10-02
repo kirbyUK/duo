@@ -56,8 +56,8 @@ class Player
 
 		//Score related variables:
 		static const char* HIGHSCORE_FILE;
-		unsigned int _score;
-		unsigned int _highscore;
+		static unsigned int _score;
+		static unsigned int _highscore;
 
 		//Sound effects:
 		//SoundEffect _sfx;
