@@ -1,18 +1,16 @@
-/* Copyright (c) Alex Kerr 2014
-* This file is part of 'platformer'
+/* Copyright (c) 2014, Alex Kerr
 *
-* 'platformer' is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
+* Permission to use, copy, modify, and/or distribute this software for any
+* purpose with or without fee is hereby granted, provided that the above
+* copyright notice and this permission notice appear in all copies.
 *
-* 'platformer' is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRENTY; without the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Purpose License
-* along with 'platformer'. If not, see <http://www.gnu.org/licenses/>.
+* THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+* WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+* SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+* WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+* OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+* CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 #include "player.h"
 #include <iostream>
@@ -59,6 +57,10 @@ const float Player::Y_VELOCITY = 250.0;
 //The maximum and minimum jump height in pixels:
 const float Player::MAX_JUMP_HEIGHT = 70.0;
 const float Player::MIN_JUMP_HEIGHT = MAX_JUMP_HEIGHT / 2;
+
+//The player's score:
+unsigned int Player::_score;
+unsigned int Player::_highscore;
 
 //Attempts to load up all the images, must be called before the constructor:
 bool Player::init()

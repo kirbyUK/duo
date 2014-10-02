@@ -1,24 +1,24 @@
-/* Copyright (c) Alex Kerr 2014
-* This file is part of 'platformer'
+/* Copyright (c) 2014, Alex Kerr
 *
-* 'platformer' is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
+* Permission to use, copy, modify, and/or distribute this software for any
+* purpose with or without fee is hereby granted, provided that the above
+* copyright notice and this permission notice appear in all copies.
 *
-* 'platformer' is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRENTY; without the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Purpose License
-* along with 'platformer'. If not, see <http://www.gnu.org/licenses/>.
+* THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+* WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+* SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+* WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+* OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+* CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 #include <SFML/Graphics.hpp>
 #include "block/block.h"
 #include "block/staticBlock.h"
 #include "player/player.h"
 #include "sound/music.h"
+
+const int WINDOW_X = 600, WINDOW_Y = 400;
 
 int main()
 {
@@ -30,14 +30,14 @@ int main()
 		return -1;
 
 	//Make the two characters, which are both controlled by the player:
-	Player p1(200, 100), p2(400, 200);
+	Player player[CHARACTERS] = { Player(200, 100), Player(400, 200) };
 
 	//Make the window:
-	sf::RenderWindow window(sf::VideoMode(600, 400), "Reflect",
+	sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Reflect",
 		sf::Style::Close);
 	sf::Event event;
 
-	StaticBlock b(600, 25, 0, 375);
+	StaticBlock b(WINDOW_X, 25, 0, WINDOW_Y - 25);
 	Music music;
 
 	sf::Clock frameTimer;
@@ -52,27 +52,23 @@ int main()
 
 		//Handle player movement:
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			p1.move(LEFT, frameTime);
-			p2.move(LEFT, frameTime);
-		}
+			for(unsigned int i = 0; i < CHARACTERS; i++)
+				player[i].move(LEFT, frameTime);
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			for(unsigned int i = 0; i < CHARACTERS; i++)
+				player[i].move(RIGHT, frameTime);
+
+		for(unsigned int i = 0; i < CHARACTERS; i++)
 		{
-			p1.move(RIGHT, frameTime);
-			p2.move(RIGHT, frameTime);
+			player[i].move(frameTime);
+			player[i].handleCollision(b.getShape());
+			player[i].handleCollision(&window);
+			player[i].handleMovement();
 		}
-		p1.move(frameTime);
-		p2.move(frameTime);
-		p1.handleCollision(b.getShape());
-		p2.handleCollision(b.getShape());
-		p1.handleCollision(&window);
-		p2.handleCollision(&window);
-		p1.handleMovement();
-		p2.handleMovement();
 
 		window.clear(sf::Color(120, 50, 50));
-		window.draw(p1.getSprite());
-		window.draw(p2.getSprite());
+		for(unsigned int i = 0; i < CHARACTERS; i++)
+			window.draw(player[i].getSprite());
 		window.draw(b.getShape());
 		window.display();
 		frameTime = frameTimer.restart().asSeconds();
