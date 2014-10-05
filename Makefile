@@ -1,7 +1,7 @@
 CC=g++
 SRC=src
 BIN=reflect
-OBJS=main.o player.o block.o staticBlock.o music.o
+OBJS=main.o player.o block.o staticBlock.o music.o exit.o
 FLAGS=-Wall -Werror -c -g
 LIBS=-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
@@ -24,6 +24,9 @@ staticBlock.o: $(SRC)/block/staticBlock.h $(SRC)/block/staticBlock.cpp
 
 music.o: $(SRC)/sound/music.h $(SRC)/sound/music.cpp
 	$(CC) $(FLAGS) $(SRC)/sound/music.cpp
+
+exit.o: $(SRC)/level/exit.h $(SRC)/level/exit.cpp
+	$(CC) $(FLAGS) $(SRC)/level/exit.cpp
 
 clean:
 	rm -f $(BIN) $(OBJS)
