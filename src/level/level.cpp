@@ -65,10 +65,10 @@ std::vector <Level*> Level::init()
 		std::string filepath = LEVEL_DIR + name;
 		
 		//Attempt to make a level from this file:
-		Level* l = NULL;
+		Level* level = NULL;
 		try
 		{
-			l = new Level(filepath.c_str());
+			level = new Level(filepath.c_str());
 		}
 		catch(std::exception& e)
 		{
@@ -76,7 +76,7 @@ std::vector <Level*> Level::init()
 		}
 
 		//If successful, add it to the vector of levels:
-		v.push_back(l);
+		v.push_back(level);
 
 		//Read the next item in the directory:
 		dir_contents = readdir(dir);
