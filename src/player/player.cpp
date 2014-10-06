@@ -84,14 +84,14 @@ const sf::Uint8* Player::getPixelsPointer()
 	return _sprites[0].getPixelsPtr();
 }
 
-Player::Player(float x, float y)
+Player::Player(sf::Vector2f v)
 {	
 	//Load the texture from the image:
 	_texture.loadFromImage(_sprites[0]);
 	_sprite.setTexture(_texture);
 
 	//Set the initial position:
-	_sprite.setPosition(x, y);
+	_sprite.setPosition(v);
 
 	//Get the previous highscore:
 	std::ifstream file(HIGHSCORE_FILE);
@@ -113,10 +113,10 @@ Player::Player(float x, float y)
 	_resetVectors();
 }
 
-void Player::reset()
+void Player::reset(sf::Vector2f v)
 {
 	//Set the initial position:
-	_sprite.setPosition(37.5, 125);
+	_sprite.setPosition(v);
 
 	//Check if the high score needs changing:
 	if(_score > _highscore)

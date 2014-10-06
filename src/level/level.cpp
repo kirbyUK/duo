@@ -123,7 +123,18 @@ Level::Level(const char* file)
 		Json::Value element = root[i];
 		std::string type = element.get("type", "none").asString();
 
-		//If it is an exit, create a new exit:
+		if(type == "start")
+		{
+			Json::Value position = element.get("pos", Json::Value());
+			for(unsigned int i = 0; i < position.size(); i++)
+			{
+				_start[i] = sf::Vector2f
+				(
+					position[i].get("x", 0).asFloat(),
+					position[i].get("y", 0).asFloat()
+				);
+			}
+		}
 		if(type == "exit")
 		{
 			_exits[exits++] = new Exit
@@ -174,6 +185,11 @@ bool Level::isComplete(Player p[])
 std::vector <Block*> Level::getBlocks()
 {
 	return _blocks;
+}
+
+sf::Vector2f Level::getStartPosition(int i) const
+{
+	return _start[i];
 }
 
 sf::RectangleShape& Level::getExit(int i) const

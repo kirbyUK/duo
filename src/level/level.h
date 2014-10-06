@@ -28,6 +28,9 @@ class Level
 		//The directory containing the level files:
 		static std::string LEVEL_DIR;
 
+		//The start position of the two players:
+		sf::Vector2f _start[2];
+
 		//The two exits that must be reached by both characters to progress:
 		static const unsigned int EXITS;
 		Exit* _exits[2];
@@ -67,6 +70,9 @@ class Level
 
 		//Return the list of blocks:
 		std::vector <Block*> getBlocks();
+
+		//Return the start positions:
+		sf::Vector2f getStartPosition(int) const;
 
 		//Return drawables:
 		sf::RectangleShape& getExit(int) const;

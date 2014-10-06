@@ -44,7 +44,11 @@ int main()
 	Level* level = levels[0];
 
 	//Make the two characters, which are both controlled by the player:
-	Player player[CHARACTERS] = { Player(200, 100), Player(400, 200) };
+	Player player[CHARACTERS] =
+	{ 
+		Player(level->getStartPosition(0)),
+		Player(level->getStartPosition(1))
+	};
 
 	//Make the window:
 	sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Reflect",

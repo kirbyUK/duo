@@ -75,10 +75,10 @@ class Player
 		static const sf::Uint8* getPixelsPointer();
 
 		//Constructor:
-		Player(float, float);
+		Player(sf::Vector2f);
 
 		//Resets the player back to how it was if it had just been made:
-		void reset();
+		void reset(sf::Vector2f);
 
 		//Signal the player to jump:
 		void jump();

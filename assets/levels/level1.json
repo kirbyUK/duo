@@ -1,23 +1,36 @@
 [
    {
-      "type" : "exit",
       "height" : 50,
-      "y" : 325,
       "x" : 100,
+      "type" : "exit",
+      "y" : 325,
       "width" : 25
    },
    {
-      "y" : 325,
+      "height" : 50,
       "x" : 300,
-      "width" : 25,
+      "y" : 325,
       "type" : "exit",
-      "height" : 50
+      "width" : 25
    },
    {
-      "y" : 375,
+      "height" : 25,
       "x" : 0,
-      "width" : 600,
       "type" : "static",
-      "height" : 25
+      "y" : 375,
+      "width" : 600
+   },
+   {
+      "pos" : [
+         {
+            "x" : 200,
+            "y" : 100
+         },
+         {
+            "y" : 150,
+            "x" : 300
+         }
+      ],
+      "type" : "start"
    }
 ]
