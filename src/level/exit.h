@@ -23,10 +23,11 @@ class Exit
 		enum COLOUR { RED, GREEN };
 		static const sf::Color _colours[2];
 		sf::RectangleShape _shape;
+		bool _isPlayerInside;
 
 	public:
 		Exit(float, float, float, float);
-		bool isPlayerInside(Player*);
+		bool isPlayerInside(Player[]);
 		sf::RectangleShape& getShape();
 };
 

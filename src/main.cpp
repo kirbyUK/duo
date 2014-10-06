@@ -13,8 +13,12 @@
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <exception>
+#include <vector>
 #include "block/block.h"
 #include "block/staticBlock.h"
+#include "level/level.h"
 #include "player/player.h"
 #include "sound/music.h"
 
@@ -39,6 +43,18 @@ int main()
 
 	StaticBlock b(WINDOW_X, 25, 0, WINDOW_Y - 25);
 	Music music;
+
+	std::vector <Level*> levels;
+	try
+	{
+		Level* level = new Level("assets/levels/level1.json");
+		levels.push_back(level);
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what();
+	}
+	Level* level = levels[0];
 
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;
@@ -66,12 +82,17 @@ int main()
 			player[i].handleMovement();
 		}
 
+		level->isComplete(player);
+
 		window.clear(sf::Color(120, 50, 50));
 		for(unsigned int i = 0; i < CHARACTERS; i++)
 			window.draw(player[i].getSprite());
 		window.draw(b.getShape());
+		window.draw(level->getExit(0));
+		window.draw(level->getExit(1));
 		window.display();
 		frameTime = frameTimer.restart().asSeconds();
 	}
+	delete level;
 	return 0;
 }
