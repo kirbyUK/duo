@@ -28,7 +28,7 @@ class Block
 		//Checks if the player is standing directly on top of the block:
 		bool isPlayerOnTop(sf::Sprite&) const;
 
-		sf::RectangleShape getShape() const;
+		sf::RectangleShape& getShape();
 };
 
 #endif

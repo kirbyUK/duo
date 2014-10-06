@@ -16,8 +16,6 @@
 #include <iostream>
 #include <exception>
 #include <vector>
-#include "block/block.h"
-#include "block/staticBlock.h"
 #include "level/level.h"
 #include "player/player.h"
 #include "sound/music.h"
@@ -33,6 +31,18 @@ int main()
 	if(! Music::init())
 		return -1;
 
+	std::vector <Level*> levels;
+	try
+	{
+		levels = Level::init();
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << e.what();
+		return -1;
+	}
+	Level* level = levels[0];
+
 	//Make the two characters, which are both controlled by the player:
 	Player player[CHARACTERS] = { Player(200, 100), Player(400, 200) };
 
@@ -41,20 +51,7 @@ int main()
 		sf::Style::Close);
 	sf::Event event;
 
-	StaticBlock b(WINDOW_X, 25, 0, WINDOW_Y - 25);
 	Music music;
-
-	std::vector <Level*> levels;
-	try
-	{
-		Level* level = new Level("assets/levels/level1.json");
-		levels.push_back(level);
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << e.what();
-	}
-	Level* level = levels[0];
 
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;
@@ -74,23 +71,29 @@ int main()
 			for(unsigned int i = 0; i < CHARACTERS; i++)
 				player[i].move(RIGHT, frameTime);
 
+		//Handle collisions and movement:
 		for(unsigned int i = 0; i < CHARACTERS; i++)
 		{
 			player[i].move(frameTime);
-			player[i].handleCollision(b.getShape());
+			for(unsigned int j = 0; j < level->getBlocks().size(); j++)
+				player[i].handleCollision(level->getBlocks().at(j)->getShape());
 			player[i].handleCollision(&window);
 			player[i].handleMovement();
 		}
 
 		level->isComplete(player);
 
+		//Draw the frame:
 		window.clear(sf::Color(120, 50, 50));
 		for(unsigned int i = 0; i < CHARACTERS; i++)
 			window.draw(player[i].getSprite());
-		window.draw(b.getShape());
-		window.draw(level->getExit(0));
-		window.draw(level->getExit(1));
+		for(unsigned int i = 0; i < level->getBlocks().size(); i++)
+			window.draw(level->getBlockDrawable(i));
+		for(unsigned int i = 0; i < 2; i++)
+			window.draw(level->getExit(i));
 		window.display();
+
+		//Get the time of that frame:
 		frameTime = frameTimer.restart().asSeconds();
 	}
 	delete level;

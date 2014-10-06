@@ -25,22 +25,23 @@ Exit::Exit(float width, float height, float x, float y)
 	_shape.setSize(sf::Vector2f(width, height));
 	_shape.setPosition(x, y);
 	_shape.setFillColor(_colours[RED]);
-	_isPlayerInside = false;
 }
 
 bool Exit::isPlayerInside(Player p[])
 {
-	_isPlayerInside = 
-		(_shape.getGlobalBounds().intersects(p[0].getSprite().getGlobalBounds())
-		|| (_shape.getGlobalBounds().intersects(p[1].getSprite().getGlobalBounds())));
-	return _isPlayerInside;
+	if((_shape.getGlobalBounds().intersects(p[0].getSprite().getGlobalBounds()))
+		|| (_shape.getGlobalBounds().intersects(p[1].getSprite().getGlobalBounds())))
+	{
+		_shape.setFillColor(_colours[GREEN]);
+		return true;
+	}
+	{
+		_shape.setFillColor(_colours[RED]);
+		return false;
+	}
 }
 
 sf::RectangleShape& Exit::getShape()
 {
-	if(_isPlayerInside)
-		_shape.setFillColor(_colours[GREEN]);
-	else
-		_shape.setFillColor(_colours[RED]);
 	return _shape;
 }

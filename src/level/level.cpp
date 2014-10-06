@@ -18,9 +18,77 @@
 #include <fstream>
 #include <cerrno>
 #include <cstring>
+#include <dirent.h>
 #include <jsoncpp/json/json.h>
 
+#ifndef ASSETS
+	#define ASSETS "./assets"
+#endif
+
+#ifdef _WIN32
+	std::string Level::LEVEL_DIR = ((std::string)ASSETS + "\\levels\\");
+#else
+	std::string Level::LEVEL_DIR= ((std::string)ASSETS + "/levels/");
+#endif
+
 const unsigned int Level::EXITS = 2;
+
+std::vector <Level*> Level::init()
+{
+	//Read the levels directory and create a new object for each file:
+	DIR* dir = opendir(LEVEL_DIR.c_str());
+	if(dir == NULL)
+	{
+		std::stringstream error;
+		error 	<< "Failed to open '" << LEVEL_DIR << "': "
+				<< strerror(errno) << std::endl;
+		_LevelException ex(error.str().c_str());
+		throw ex;
+	}
+
+	std::vector <Level*> v;
+	dirent* dir_contents = readdir(dir);
+	while(dir_contents != NULL)
+	{
+		//Get the name of the next item:
+		std::string name = dir_contents->d_name;
+
+		//Check we are not reading "." or "..":
+		if((name == ".") || (name == ".."))
+		{
+			//Read the next entry:
+			dir_contents = readdir(dir);
+			continue;
+		}
+
+		//Construct the full path of the item:
+		std::string filepath = LEVEL_DIR + name;
+		
+		//Attempt to make a level from this file:
+		Level* l = NULL;
+		try
+		{
+			l = new Level(filepath.c_str());
+		}
+		catch(std::exception& e)
+		{
+			throw e;
+		}
+
+		//If successful, add it to the vector of levels:
+		v.push_back(l);
+
+		//Read the next item in the directory:
+		dir_contents = readdir(dir);
+	}
+	return v;
+}
+
+void Level::clean(std::vector <Level*> levels)
+{
+	for(unsigned int i = 0; i < levels.size(); i++)
+		delete levels[i];
+}
 
 Level::Level(const char* file)
 {
@@ -66,6 +134,17 @@ Level::Level(const char* file)
 				element.get("y", 0).asFloat()
 			);
 		}
+		else if(type == "static")
+		{
+			StaticBlock* b = new StaticBlock
+			(
+				element.get("width", 0).asFloat(),
+				element.get("height", 0).asFloat(),
+				element.get("x", 0).asFloat(),
+				element.get("y", 0).asFloat()
+			);
+			_blocks.push_back(b);
+		}
 		//If the element we try to read has no type, throw and error:
 		else if(type == "none")
 		{
@@ -82,14 +161,27 @@ Level::~Level()
 {
 	for(unsigned int i = 0; i < EXITS; i++)
 		delete _exits[i];
+
+	for(unsigned int i = 0; i < _blocks.size(); i++)
+		delete _blocks[i];
 }
 
 bool Level::isComplete(Player p[])
 {
-	return ((_exits[0]->isPlayerInside(p)) && (_exits[1]->isPlayerInside(p)));
+	return ((_exits[0]->isPlayerInside(p)) & (_exits[1]->isPlayerInside(p)));
+}
+
+std::vector <Block*> Level::getBlocks()
+{
+	return _blocks;
 }
 
 sf::RectangleShape& Level::getExit(int i) const
 {
 	return _exits[i]->getShape();
+}
+
+sf::RectangleShape& Level::getBlockDrawable(int i) const
+{
+	return _blocks[i]->getShape();
 }
