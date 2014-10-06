@@ -42,12 +42,12 @@ const sf::Color Player::COLOUR_MASK(0, 255, 0);
 //The array storing all the images once they've been loaded:
 sf::Image Player::_sprites[SPRITES];
 
-//The file path of the file containing the player's highscore:
+/*//The file path of the file containing the player's highscore:
 #ifndef HIGHSCORE
 	#define HIGHSCORE "highscore"
 #endif
 
-const char* Player::HIGHSCORE_FILE = HIGHSCORE;
+const char* Player::HIGHSCORE_FILE = HIGHSCORE;*/
 
 //How many pixels the character will move after a second of constant motion in
 //that direction:
@@ -58,9 +58,9 @@ const float Player::Y_VELOCITY = 250.0;
 const float Player::MAX_JUMP_HEIGHT = 70.0;
 const float Player::MIN_JUMP_HEIGHT = MAX_JUMP_HEIGHT / 2;
 
-//The player's score:
+/*//The player's score:
 unsigned int Player::_score;
-unsigned int Player::_highscore;
+unsigned int Player::_highscore;*/
 
 //Attempts to load up all the images, must be called before the constructor:
 bool Player::init()
@@ -79,10 +79,10 @@ bool Player::init()
 	return true;
 }
 
-const sf::Uint8* Player::getPixelsPointer()
+/*const sf::Uint8* Player::getPixelsPointer()
 {
 	return _sprites[0].getPixelsPtr();
-}
+}*/
 
 Player::Player(sf::Vector2f v)
 {	
@@ -93,7 +93,7 @@ Player::Player(sf::Vector2f v)
 	//Set the initial position:
 	_sprite.setPosition(v);
 
-	//Get the previous highscore:
+/*	//Get the previous highscore:
 	std::ifstream file(HIGHSCORE_FILE);
 	if(! file)
 		_highscore = 0;
@@ -104,7 +104,7 @@ Player::Player(sf::Vector2f v)
 	}
 
 	//Initalise everything else:
-	_score = 0;
+	_score = 0;*/
 	_isJumping = false;
 	_canJump = true;
 	_maxJumpHeight = MAX_JUMP_HEIGHT;
@@ -118,12 +118,12 @@ void Player::reset(sf::Vector2f v)
 	//Set the initial position:
 	_sprite.setPosition(v);
 
-	//Check if the high score needs changing:
+/*	//Check if the high score needs changing:
 	if(_score > _highscore)
 		_highscore = _score;
 	
 	//Reset everything else:
-	_score = 0;
+	_score = 0;*/
 	_isJumping = false;
 	_canJump = true;
 	_maxJumpHeight = MAX_JUMP_HEIGHT;
@@ -358,18 +358,18 @@ void Player::handleMovement()
 	_resetVectors();
 }
 
-void Player::addPoint()
+/*void Player::addPoint()
 {
 	_score++;
-//	_sfx.play(POINT);
-}
+	_sfx.play(POINT);
+}*/
 
-void Player::kill()
+/*void Player::kill()
 {
-//	_sfx.play(DEATH);
-}
+	_sfx.play(DEATH);
+}*/
 
-bool Player::writeScoreToFile()
+/*bool Player::writeScoreToFile()
 {
 	std::ofstream file(HIGHSCORE_FILE);
 	if(! file)
@@ -383,14 +383,14 @@ bool Player::writeScoreToFile()
 		file.close();
 		return true;
 	}
-}
+}*/
 
 sf::Sprite& Player::getSprite()
 {
 	return _sprite;
 }
 
-unsigned int Player::getScore() const
+/*unsigned int Player::getScore() const
 {
 	return _score;
 }
@@ -398,7 +398,7 @@ unsigned int Player::getScore() const
 unsigned int Player::getHighScore() const
 {
 	return _highscore;
-}
+}*/
 
 //Simplifies resetting the vectors as it's repeated quite a bit:
 void Player::_resetVectors()

@@ -54,12 +54,12 @@ class Player
 		void _resetVectors();
 
 		//Score related variables:
-		static const char* HIGHSCORE_FILE;
+/*		static const char* HIGHSCORE_FILE;
 		static unsigned int _score;
-		static unsigned int _highscore;
+		static unsigned int _highscore;*/
 
-		//Sound effects:
-		//SoundEffect _sfx;
+/*		//Sound effects:
+		SoundEffect _sfx;*/
 
 		//A function for converting a floating point number to a Direction:
 		static Direction _getDirection(float);
@@ -71,8 +71,8 @@ class Player
 		//Load the images:
 		static bool init();
 
-		//Return the array of pixels, for the icon:
-		static const sf::Uint8* getPixelsPointer();
+/*		//Return the array of pixels, for the icon:
+		static const sf::Uint8* getPixelsPointer();*/
 
 		//Constructor:
 		Player(sf::Vector2f);
@@ -96,19 +96,19 @@ class Player
 		void handleCollision(sf::Window*);
 		void handleMovement();
 
-		//Give the player a point:
-		void addPoint();
+/*		//Give the player a point:
+		void addPoint();*/
 
-		//Kill the player:
-		void kill();
+/*		//Kill the player:
+		void kill();*/
 
-		//Write the highscore to the highscore file:
-		bool writeScoreToFile();
+/*		//Write the highscore to the highscore file:
+		bool writeScoreToFile();*/
 
 		//Getters:
 		sf::Sprite& getSprite();
-		unsigned int getScore() const;
-		unsigned int getHighScore() const;
+/*		unsigned int getScore() const;
+		unsigned int getHighScore() const;*/
 };
 
 #endif
