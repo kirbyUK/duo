@@ -31,5 +31,8 @@ block.o: $(SRC)/level/block/block.h $(SRC)/level/block/block.cpp
 staticBlock.o: $(SRC)/level/block/staticBlock.h $(SRC)/level/block/staticBlock.cpp
 	$(CC) $(FLAGS) $(SRC)/level/block/staticBlock.cpp
 
+levels: level-builder.pl
+	./level-builder.pl
+
 clean:
 	rm -f $(BIN) $(OBJS)
