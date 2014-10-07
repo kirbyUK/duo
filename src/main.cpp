@@ -57,6 +57,7 @@ int main()
 
 	Music music;
 
+	sf::Clock jumpTimer;
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;
 	while(window.isOpen())
@@ -65,6 +66,13 @@ int main()
 		{
 			if(event.type == sf::Event::Closed)
 				window.close();
+
+			//If the spacebar is released:
+			if(event.type == sf::Event::KeyReleased)
+				if(event.key.code == sf::Keyboard::Space)
+					for(unsigned int i = 0; i < CHARACTERS; i++)
+						player[i].setMaxJumpHeight(jumpTimer.getElapsedTime().asSeconds(),
+							frameTime);
 		}
 
 		//Handle player movement:
@@ -74,6 +82,14 @@ int main()
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			for(unsigned int i = 0; i < CHARACTERS; i++)
 				player[i].move(RIGHT, frameTime);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			for(unsigned int i = 0; i < CHARACTERS; i++)
+			{
+				player[i].jump();
+				jumpTimer.restart();
+			}
+		}
 
 		//Handle collisions and movement:
 		for(unsigned int i = 0; i < CHARACTERS; i++)
