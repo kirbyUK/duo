@@ -19,7 +19,7 @@
 #include <cerrno>
 #include <cstring>
 #include <dirent.h>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 
 #ifndef ASSETS
 	#define ASSETS "./assets"
