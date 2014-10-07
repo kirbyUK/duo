@@ -6,20 +6,37 @@ my $levels =
 [
 	[
 		1,
+		# The two start positions:
+		{
+			type => "start",
+			pos => 
+			[
+				{
+					x => 235,
+					y => 175
+				},
+				{
+					x => 550,
+					y => 175
+				}
+			]
+		},
+		# The two exits:
 		{
 			type => "exit",
 			width => 25,
 			height => 50,
-			x => 100,
+			x => 235,
 			y => 325
 		},
 		{
 			type => "exit",
 			width => 25,
 			height => 50,
-			x => 350,
+			x => 550,
 			y => 325
 		},
+		# The two mandatory static blocks:
 		{
 			type => "static",
 			width => 600,
@@ -29,25 +46,26 @@ my $levels =
 		},
 		{
 			type => "static",
-			width => 25,
+			width => 30,
 			height => 600,
-			x => 287.5,
+			x => 285,
 			y => 0
 		},
+		# Any extra blocks:
 		{
-			type => "start",
-			pos => 
-			[
-				{
-					x => 200,
-					y => 100
-				},
-				{
-					x => 300,
-					y => 150
-				}
-			]
-		}
+			type => "static",
+			width => 100,
+			height => 25,
+			x => 185,
+			y => 200
+		},
+		{
+			type => "static",
+			width => 100,
+			height => 25,
+			x => 500,
+			y => 200
+		},
 	],
 ];
 
