@@ -18,8 +18,8 @@ ifdef SystemRoot
 #	HIGHSCORE="highscore"
 #	LOCKFILE="lockfile"
 else
-	FLAGS=-Wall -Werror -c -g
-	LIBS=-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ljsoncp
+	FLAGS=-Wall -Werror -c -g -I/usr/include/jsoncpp/
+	LIBS=-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ljsoncpp
 endif
 
 all: $(BIN)
