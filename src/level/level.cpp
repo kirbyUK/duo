@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <algorithm>
 #include <cerrno>
 #include <cstring>
 #include <dirent.h>
@@ -46,7 +47,7 @@ std::vector <Level*> Level::init()
 		throw ex;
 	}
 
-	std::vector <Level*> v;
+	std::vector <std::string> filepaths;
 	dirent* dir_contents = readdir(dir);
 	while(dir_contents != NULL)
 	{
@@ -63,12 +64,23 @@ std::vector <Level*> Level::init()
 
 		//Construct the full path of the item:
 		std::string filepath = LEVEL_DIR + name;
-		
+		filepaths.push_back(filepath);
+
+		//Read the next item in the directory:
+		dir_contents = readdir(dir);
+	}
+	//Sort the names of the files so we get them in the right order:
+	std::sort(filepaths.begin(), filepaths.end());
+
+	//Make the levels:
+	std::vector <Level*> v;
+	for(unsigned int i = 0; i < filepaths.size(); i++)
+	{
 		//Attempt to make a level from this file:
 		Level* level = NULL;
 		try
 		{
-			level = new Level(filepath.c_str());
+			level = new Level(filepaths[i].c_str());
 		}
 		catch(std::exception& e)
 		{
@@ -77,9 +89,6 @@ std::vector <Level*> Level::init()
 
 		//If successful, add it to the vector of levels:
 		v.push_back(level);
-
-		//Read the next item in the directory:
-		dir_contents = readdir(dir);
 	}
 	return v;
 }
