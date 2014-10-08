@@ -45,7 +45,8 @@ int main()
 		std::cerr << e.what();
 		return -1;
 	}
-	Level* level = levels[0];
+	int currentLevel = 0;
+	Level* level = levels[currentLevel];
 
 	//Make the two characters, which are both controlled by the player:
 	Player player[CHARACTERS] =
@@ -62,6 +63,7 @@ int main()
 	Music music;
 
 	sf::Clock jumpTimer;
+	bool isSpaceHit = false;
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;
 	while(window.isOpen())
@@ -73,10 +75,17 @@ int main()
 
 			//If the spacebar is released:
 			if(event.type == sf::Event::KeyReleased)
+			{
 				if(event.key.code == sf::Keyboard::Space)
+				{
 					for(unsigned int i = 0; i < CHARACTERS; i++)
+					{
 						player[i].setMaxJumpHeight(jumpTimer.getElapsedTime().asSeconds(),
 							frameTime);
+					}
+					isSpaceHit = false;
+				}
+			}
 		}
 
 		//Handle player movement:
@@ -88,10 +97,14 @@ int main()
 				player[i].move(RIGHT, frameTime);
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
-			for(unsigned int i = 0; i < CHARACTERS; i++)
+			if(! isSpaceHit)
 			{
-				player[i].jump();
-				jumpTimer.restart();
+				for(unsigned int i = 0; i < CHARACTERS; i++)
+				{
+					player[i].jump();
+					jumpTimer.restart();
+				}
+				isSpaceHit = true;
 			}
 		}
 
@@ -105,7 +118,12 @@ int main()
 			player[i].handleMovement();
 		}
 
-		level->isComplete(player);
+		if(level->isComplete(player))
+		{
+			level = levels[++currentLevel];
+			for(unsigned int i = 0; i < CHARACTERS; i++)
+				player[i].reset(level->getStartPosition(i));
+		}
 
 		//Draw the frame:
 		window.clear(sf::Color(120, 50, 50));
