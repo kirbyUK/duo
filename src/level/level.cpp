@@ -156,6 +156,34 @@ Level::Level(const char* file)
 			);
 			_blocks.push_back(b);
 		}
+		else if(type == "arrow")
+		{
+			std::string facing = element.get("facing", "none").asString();
+			Facing f;
+			if(facing == "north")
+				f = NORTH;
+			else if(facing == "east")
+				f = EAST;
+			else if(facing == "south")
+				f = SOUTH;
+			else if(facing == "west")
+				f = WEST;
+			else
+			{
+				std::stringstream error;
+				error	<< "Failed to parse file '" << file 
+						<< "': Arrow with no facing found\n";
+				_LevelException ex(error.str().c_str());
+				throw ex;
+			}
+			Arrow* a = new Arrow
+			(
+				f,
+				element.get("x", 0).asFloat(),
+				element.get("y", 0).asFloat()
+			);
+			_arrows.push_back(a);
+		}
 		//If the element we try to read has no type, throw and error:
 		else if(type == "none")
 		{
@@ -175,6 +203,9 @@ Level::~Level()
 
 	for(unsigned int i = 0; i < _blocks.size(); i++)
 		delete _blocks[i];
+
+	for(unsigned int i = 0; i < _arrows.size(); i++)
+		delete _arrows[i];
 }
 
 bool Level::isComplete(Player p[])
@@ -192,12 +223,25 @@ sf::Vector2f Level::getStartPosition(int i) const
 	return _start[i];
 }
 
-sf::RectangleShape& Level::getExit(int i) const
+std::vector <sf::Drawable*> Level::getDrawables()
 {
-	return _exits[i]->getShape();
-}
-
-sf::RectangleShape& Level::getBlockDrawable(int i) const
-{
-	return _blocks[i]->getShape();
+	//Typecast all the drawables up to an sf::Drawable so they can all be
+	//processed in one go: 
+	std::vector <sf::Drawable*> drawables;
+	for(unsigned int i = 0; i < EXITS; i++)
+	{
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_exits[i]->getShape());
+		drawables.push_back(d);
+	}
+	for(unsigned int i = 0; i < _blocks.size(); i++)
+	{
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_blocks[i]->getShape());
+		drawables.push_back(d);
+	}
+	for(unsigned int i = 0; i < _arrows.size(); i++)
+	{
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_arrows[i]->getSprite());
+		drawables.push_back(d);
+	}
+	return drawables;
 }

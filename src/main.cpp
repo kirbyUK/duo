@@ -107,15 +107,14 @@ int main()
 		window.clear(sf::Color(120, 50, 50));
 		for(unsigned int i = 0; i < CHARACTERS; i++)
 			window.draw(player[i].getSprite());
-		for(unsigned int i = 0; i < level->getBlocks().size(); i++)
-			window.draw(level->getBlockDrawable(i));
-		for(unsigned int i = 0; i < 2; i++)
-			window.draw(level->getExit(i));
+		std::vector <sf::Drawable*> drawables = level->getDrawables();
+		for(unsigned int i = 0; i < drawables.size(); i++)
+			window.draw(*drawables[i]);
 		window.display();
 
 		//Get the time of that frame:
 		frameTime = frameTimer.restart().asSeconds();
 	}
-	delete level;
+	Level::clean(levels);
 	return 0;
 }

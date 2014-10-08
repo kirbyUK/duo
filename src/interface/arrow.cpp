@@ -16,6 +16,10 @@
 #include <iostream>
 
 //The filepaths to the images, with backticks for Windows:
+#ifndef ASSETS
+	#define ASSETS "./assets"
+#endif
+
 #ifdef _WIN32
 	const std::string Arrow::SPRITE_PATH = 
 		(((std::string)ASSETS) + ((std::string)"\\sprites\\arrow.png"));
@@ -59,7 +63,7 @@ Arrow::Arrow(Facing f, float x, float y)
 	_sprite.rotate(static_cast <int>(f));
 }
 
-sf::Sprite& Arrow::getSprite()
+sf::Sprite* Arrow::getSprite()
 {
-	return _sprite;
+	return &_sprite;
 }

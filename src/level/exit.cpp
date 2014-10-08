@@ -41,7 +41,7 @@ bool Exit::isPlayerInside(Player p[])
 	}
 }
 
-sf::RectangleShape& Exit::getShape()
+sf::RectangleShape* Exit::getShape()
 {
-	return _shape;
+	return &_shape;
 }

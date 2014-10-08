@@ -66,6 +66,13 @@ my $levels =
 			x => 500,
 			y => 200
 		},
+		# Additional objects:
+		{
+			type => "arrow",
+			facing => "south",
+			x => 243,
+			y => 159
+		}
 	],
 ];
 

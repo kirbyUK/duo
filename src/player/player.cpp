@@ -211,7 +211,7 @@ void Player::move(Direction d, float frameTime)
 }*/
 
 //Checks if the proposed movement will cause a collision, and intervenes if so:
-void Player::handleCollision(sf::RectangleShape s)
+void Player::handleCollision(sf::RectangleShape* s)
 {
 	//Create a new Rect representing the player after the proposed movement:
 	float x = (
@@ -230,7 +230,7 @@ void Player::handleCollision(sf::RectangleShape s)
 
 	//Check if this new Rect collides with the given sprite:
 	sf::FloatRect intersection;
-	if(r.intersects(s.getGlobalBounds(), intersection))
+	if(r.intersects(s->getGlobalBounds(), intersection))
 	{
 		//If there is a collision, we need to create another rect
 		//representing the player after movement with one of the directions
@@ -260,7 +260,7 @@ void Player::handleCollision(sf::RectangleShape s)
 		r.left = x;
 		r.top =  y;
 
-		if(r.intersects(s.getGlobalBounds(), intersection))
+		if(r.intersects(s->getGlobalBounds(), intersection))
 		{
 			if((_round(intersection.height) != 0) && (_round(intersection.width) != 0))
 			{

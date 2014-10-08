@@ -17,6 +17,7 @@
 #include "exit.h"
 #include "block/block.h"
 #include "block/staticBlock.h"
+#include "../interface/arrow.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <exception>
@@ -37,6 +38,9 @@ class Level
 
 		//The blocks used in the level:
 		std::vector <Block*> _blocks;
+
+		//The arrows (if any) used in the level:
+		std::vector <Arrow*> _arrows;
 
 		//A class to create exceptions if reading in the files fails:
 		class _LevelException : public std::exception
@@ -75,8 +79,7 @@ class Level
 		sf::Vector2f getStartPosition(int) const;
 
 		//Return drawables:
-		sf::RectangleShape& getExit(int) const;
-		sf::RectangleShape& getBlockDrawable(int) const;
+		std::vector <sf::Drawable*> getDrawables();
 };
 
 #endif

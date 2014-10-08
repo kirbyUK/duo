@@ -1,8 +1,7 @@
 CC=g++
 SRC=src
 BIN=reflect
-OBJS=main.o player.o music.o exit.o level.o block.o staticBlock.o
-
+OBJS=main.o player.o music.o exit.o level.o block.o staticBlock.o arrow.o
 
 ifdef SystemRoot
     CCFLAGS += -D WIN32
@@ -47,6 +46,9 @@ block.o: $(SRC)/level/block/block.h $(SRC)/level/block/block.cpp
 
 staticBlock.o: $(SRC)/level/block/staticBlock.h $(SRC)/level/block/staticBlock.cpp
 	$(CC) $(FLAGS) $(SRC)/level/block/staticBlock.cpp
+
+arrow.o: $(SRC)/interface/arrow.h $(SRC)/interface/arrow.cpp
+	$(CC) $(FLAGS) $(SRC)/interface/arrow.cpp
 
 levels: level-builder.pl
 	./level-builder.pl

@@ -92,7 +92,7 @@ class Player
 		//void move(DynamicBlock*);	//Handles movement from a DynamicBlock.
 
 		//Process events at the end of the frame:
-		void handleCollision(sf::RectangleShape);
+		void handleCollision(sf::RectangleShape*);
 		void handleCollision(sf::Window*);
 		void handleMovement();
 

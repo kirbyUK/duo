@@ -39,7 +39,7 @@ bool Block::isPlayerOnTop(sf::Sprite& player) const
 	return false;
 }
 
-sf::RectangleShape& Block::getShape()
+sf::RectangleShape* Block::getShape()
 {
-	return _shape;
+	return &_shape;
 }

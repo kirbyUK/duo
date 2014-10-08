@@ -27,7 +27,7 @@ class Exit
 	public:
 		Exit(float, float, float, float);
 		bool isPlayerInside(Player[]);
-		sf::RectangleShape& getShape();
+		sf::RectangleShape* getShape();
 };
 
 #endif
