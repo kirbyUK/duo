@@ -1,63 +1,69 @@
 [
    {
+      "type" : "start",
       "pos" : [
          {
-            "y" : 175,
-            "x" : 235
+            "x" : 235,
+            "y" : 175
          },
          {
-            "y" : 175,
-            "x" : 550
+            "x" : 550,
+            "y" : 175
          }
-      ],
-      "type" : "start"
+      ]
+   },
+   {
+      "y" : 325,
+      "height" : 50,
+      "type" : "exit",
+      "width" : 25,
+      "x" : 235
    },
    {
       "height" : 50,
       "type" : "exit",
-      "x" : 235,
-      "y" : 325,
-      "width" : 25
-   },
-   {
-      "width" : 25,
       "y" : 325,
       "x" : 550,
-      "type" : "exit",
-      "height" : 50
+      "width" : 25
    },
    {
       "type" : "static",
       "height" : 25,
+      "y" : 375,
       "x" : 0,
-      "width" : 600,
-      "y" : 375
+      "width" : 600
    },
    {
-      "width" : 30,
-      "y" : 0,
       "height" : 600,
       "type" : "static",
-      "x" : 285
+      "y" : 0,
+      "x" : 285,
+      "width" : 30
    },
    {
       "width" : 100,
-      "y" : 200,
       "x" : 185,
+      "y" : 200,
       "height" : 25,
       "type" : "static"
    },
    {
-      "height" : 25,
-      "type" : "static",
-      "x" : 500,
       "width" : 100,
-      "y" : 200
+      "x" : 500,
+      "y" : 200,
+      "height" : 25,
+      "type" : "static"
    },
    {
+      "x" : 247,
+      "y" : 315,
       "facing" : "south",
-      "y" : 159,
-      "x" : 243,
       "type" : "arrow"
+   },
+   {
+      "x" : 562,
+      "type" : "arrow",
+      "facing" : "south",
+      "y" : 315
    }
 ]

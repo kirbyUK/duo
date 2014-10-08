@@ -70,8 +70,14 @@ my $levels =
 		{
 			type => "arrow",
 			facing => "south",
-			x => 243,
-			y => 159
+			x => 247,
+			y => 315
+		},
+		{
+			type => "arrow",
+			facing => "south",
+			x => 562,
+			y => 315
 		}
 	],
 ];

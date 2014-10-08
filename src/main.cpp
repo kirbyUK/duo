@@ -16,6 +16,7 @@
 #include <iostream>
 #include <exception>
 #include <vector>
+#include "interface/arrow.h"
 #include "level/level.h"
 #include "player/player.h"
 #include "sound/music.h"
@@ -25,6 +26,9 @@ const int WINDOW_X = 600, WINDOW_Y = 400;
 int main()
 {
 	//Attempt to load all nessecary files:
+	if(! Arrow::init())
+		return -1;
+
 	if(! Player::init())
 		return -1;
 
