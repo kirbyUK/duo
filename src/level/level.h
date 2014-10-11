@@ -27,10 +27,10 @@ class Level
 {
 	private:
 		//The directory containing the level files:
-		static std::string LEVEL_DIR;
+		static const std::string LEVEL_DIR;
 
 		//The background image:
-		static std::string BACKGROUND_PATH;
+		static const std::string BACKGROUND_PATH;
 		static sf::Image _backgroundImage;
 		static sf::Texture _backgroundTexture;
 		static sf::Sprite _background;

@@ -27,12 +27,12 @@
 #endif
 
 #ifdef _WIN32
-	std::string Level::LEVEL_DIR = ((std::string)ASSETS + "\\levels\\");
-	std::string Level::BACKGROUND_PATH =
+	const std::string Level::LEVEL_DIR = ((std::string)ASSETS + "\\levels\\");
+	const std::string Level::BACKGROUND_PATH =
 		((std::string)ASSETS + "\\sprites\\background.png");
 #else
-	std::string Level::LEVEL_DIR= ((std::string)ASSETS + "/levels/");
-	std::string Level::BACKGROUND_PATH =
+	const std::string Level::LEVEL_DIR = ((std::string)ASSETS + "/levels/");
+	const std::string Level::BACKGROUND_PATH =
 		((std::string)ASSETS + "/sprites/background.png");
 #endif
 
