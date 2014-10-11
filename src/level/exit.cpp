@@ -35,6 +35,7 @@ bool Exit::isPlayerInside(Player p[])
 		_shape.setFillColor(_colours[GREEN]);
 		return true;
 	}
+	else
 	{
 		_shape.setFillColor(_colours[RED]);
 		return false;
