@@ -28,13 +28,36 @@
 
 #ifdef _WIN32
 	std::string Level::LEVEL_DIR = ((std::string)ASSETS + "\\levels\\");
+	std::string Level::BACKGROUND_PATH =
+		((std::string)ASSETS + "\\sprites\\background.png");
 #else
 	std::string Level::LEVEL_DIR= ((std::string)ASSETS + "/levels/");
+	std::string Level::BACKGROUND_PATH =
+		((std::string)ASSETS + "/sprites/background.png");
 #endif
+
+//The background variables:
+sf::Image Level::_backgroundImage;
+sf::Texture Level::_backgroundTexture;
+sf::Sprite Level::_background;
 
 const unsigned int Level::EXITS = 2;
 
-std::vector <Level*> Level::init()
+bool Level::init()
+{
+	if(! _backgroundImage.loadFromFile(BACKGROUND_PATH))
+	{
+		std::cerr << "Unable to load '" << BACKGROUND_PATH << "'.\n";
+		return false;
+	}
+	_backgroundTexture.loadFromImage(_backgroundImage);
+	_backgroundTexture.setRepeated(true);
+	_background.setTexture(_backgroundTexture);
+	_background.setTextureRect(sf::IntRect(0, 0, 600, 400));
+	return true;
+}
+
+std::vector <Level*> Level::initLevels()
 {
 	//Read the levels directory and create a new object for each file:
 	DIR* dir = opendir(LEVEL_DIR.c_str());
@@ -230,6 +253,11 @@ std::vector <Block*> Level::getBlocks()
 sf::Vector2f Level::getStartPosition(int i) const
 {
 	return _start[i];
+}
+
+sf::Sprite& Level::getBackground()
+{
+	return _background;
 }
 
 std::vector <sf::Drawable*> Level::getDrawables()

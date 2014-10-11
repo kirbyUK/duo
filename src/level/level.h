@@ -29,6 +29,12 @@ class Level
 		//The directory containing the level files:
 		static std::string LEVEL_DIR;
 
+		//The background image:
+		static std::string BACKGROUND_PATH;
+		static sf::Image _backgroundImage;
+		static sf::Texture _backgroundTexture;
+		static sf::Sprite _background;
+
 		//The start position of the two players:
 		sf::Vector2f _start[2];
 
@@ -61,8 +67,11 @@ class Level
 		};
 
 	public:
+		//Loads the background image:
+		static bool init();
+
 		//Creates all the levels and returns them as a vector:
-		static std::vector <Level*> init();
+		static std::vector <Level*> initLevels();
 		static void clean(std::vector <Level*>);
 
 		//Constructor and destructor:
@@ -77,6 +86,9 @@ class Level
 
 		//Return the start positions:
 		sf::Vector2f getStartPosition(int) const;
+
+		//Returns the background sprite:
+		static sf::Sprite& getBackground();
 
 		//Return drawables:
 		std::vector <sf::Drawable*> getDrawables();

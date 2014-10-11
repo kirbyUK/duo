@@ -17,7 +17,8 @@
 
 extern sf::RectangleShape theone;
 
-const sf::Color Block::BLOCK_COLOUR = sf::Color(242, 241, 235);
+//const sf::Color Block::BLOCK_COLOUR = sf::Color(242, 241, 235);
+const sf::Color Block::BLOCK_COLOUR = sf::Color(130, 130, 130);
 
 //Checks if the player is standing on top of the block:
 bool Block::isPlayerOnTop(sf::Sprite& player) const

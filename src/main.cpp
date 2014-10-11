@@ -29,6 +29,9 @@ int main()
 	if(! Arrow::init())
 		return -1;
 
+	if(! Level::init())
+		return -1;
+
 	if(! Player::init())
 		return -1;
 
@@ -38,7 +41,7 @@ int main()
 	std::vector <Level*> levels;
 	try
 	{
-		levels = Level::init();
+		levels = Level::initLevels();
 	}
 	catch(std::exception& e)
 	{
@@ -126,7 +129,8 @@ int main()
 		}
 
 		//Draw the frame:
-		window.clear(sf::Color(120, 50, 50));
+		window.clear();
+		window.draw(Level::getBackground());
 		for(unsigned int i = 0; i < CHARACTERS; i++)
 			window.draw(player[i].getSprite());
 		std::vector <sf::Drawable*> drawables = level->getDrawables();
