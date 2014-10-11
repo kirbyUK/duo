@@ -13,9 +13,6 @@
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 #include "block.h"
-#include <iostream>
-
-extern sf::RectangleShape theone;
 
 //const sf::Color Block::BLOCK_COLOUR = sf::Color(242, 241, 235);
 const sf::Color Block::BLOCK_COLOUR = sf::Color(130, 130, 130);
