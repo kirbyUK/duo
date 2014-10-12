@@ -14,7 +14,6 @@
 */
 #include "button.h"
 #include <iostream>
-#include "/home/alex/Code/cpp/sfUtil.h"
 
 #ifndef ASSETS
 	#define ASSETS "./assets"

@@ -14,6 +14,7 @@
 */
 #include "level.h"
 #include <string>
+#include <iostream>
 #include <sstream>
 #include <fstream>
 #include <algorithm>
