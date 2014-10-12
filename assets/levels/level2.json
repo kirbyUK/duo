@@ -1,85 +1,85 @@
 [
    {
-      "type" : "start",
       "pos" : [
          {
             "x" : 20,
             "y" : 350
          },
          {
-            "y" : 140,
-            "x" : 320
+            "x" : 320,
+            "y" : 140
          }
-      ]
+      ],
+      "type" : "start"
    },
    {
-      "width" : 25,
-      "height" : 50,
+      "type" : "exit",
+      "x" : 235,
       "y" : 145,
-      "type" : "exit",
-      "x" : 235
-   },
-   {
-      "x" : 550,
-      "y" : 325,
-      "type" : "exit",
       "height" : 50,
       "width" : 25
    },
    {
+      "height" : 50,
+      "width" : 25,
+      "type" : "exit",
+      "x" : 550,
+      "y" : 325
+   },
+   {
+      "type" : "static",
       "x" : 0,
-      "width" : 600,
+      "y" : 375,
       "height" : 25,
-      "type" : "static",
-      "y" : 375
+      "width" : 600
    },
    {
-      "x" : 285,
-      "type" : "static",
-      "y" : 0,
+      "width" : 30,
       "height" : 600,
-      "width" : 30
+      "y" : 0,
+      "type" : "static",
+      "x" : 285
    },
    {
+      "width" : 100,
+      "height" : 20,
+      "y" : 315,
       "x" : 185,
-      "height" : 20,
-      "width" : 100,
-      "type" : "static",
-      "y" : 315
+      "type" : "static"
    },
    {
-      "width" : 100,
-      "height" : 20,
+      "type" : "static",
+      "x" : 0,
       "y" : 255,
-      "type" : "static",
-      "x" : 0
+      "height" : 20,
+      "width" : 100
    },
    {
-      "y" : 195,
-      "type" : "static",
-      "height" : 20,
       "width" : 100,
-      "x" : 185
+      "height" : 20,
+      "y" : 195,
+      "x" : 185,
+      "type" : "static"
    },
    {
       "y" : 165,
+      "x" : 315,
       "type" : "static",
-      "height" : 20,
       "width" : 100,
-      "x" : 315
+      "height" : 20
    },
    {
       "width" : 100,
       "height" : 20,
-      "type" : "static",
       "y" : 245,
+      "type" : "static",
       "x" : 500
    },
    {
       "x" : 315,
-      "y" : 345,
       "type" : "static",
-      "width" : 100,
-      "height" : 20
+      "y" : 345,
+      "height" : 20,
+      "width" : 100
    }
 ]

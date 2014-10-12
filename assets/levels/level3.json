@@ -1,0 +1,50 @@
+[
+   {
+      "type" : "start",
+      "pos" : [
+         {
+            "x" : 20,
+            "y" : 325
+         },
+         {
+            "y" : 325,
+            "x" : 320
+         }
+      ]
+   },
+   {
+      "type" : "exit",
+      "x" : 225,
+      "y" : 325,
+      "height" : 50,
+      "width" : 50
+   },
+   {
+      "y" : 325,
+      "x" : 325,
+      "type" : "exit",
+      "width" : 50,
+      "height" : 50
+   },
+   {
+      "y" : 375,
+      "x" : 0,
+      "type" : "static",
+      "width" : 600,
+      "height" : 25
+   },
+   {
+      "width" : 30,
+      "height" : 600,
+      "y" : 0,
+      "type" : "static",
+      "x" : 285
+   },
+   {
+      "height" : 50,
+      "width" : 15,
+      "x" : 170,
+      "type" : "static",
+      "y" : 325
+   }
+]
