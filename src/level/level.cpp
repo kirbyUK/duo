@@ -187,6 +187,27 @@ Level::Level(const char* file)
 				element.get("y", 0).asFloat()
 			);
 			_blocks.push_back(b);
+
+			//Check if this block has an attached button, and make it if so:
+			Json::Value button = element.get("button", Json::Value());
+			if(! button.empty())
+			{
+				Button* btn = new Button
+				(
+					sf::Vector2f
+					(
+						button.get("x", 0).asFloat(),
+						button.get("y", 0).asFloat()
+					),
+					sf::Vector2f
+					(
+						button.get("blockx", 0).asFloat(),
+						button.get("blocky", 0).asFloat()
+					),
+					b
+				);
+				_buttons.push_back(btn);
+			}
 		}
 		else if(type == "arrow")
 		{
@@ -230,14 +251,23 @@ Level::Level(const char* file)
 
 Level::~Level()
 {
-	for(unsigned int i = 0; i < EXITS; i++)
-		delete _exits[i];
+	for(unsigned int i = 0; i < _arrows.size(); i++)
+		delete _arrows[i];
 
 	for(unsigned int i = 0; i < _blocks.size(); i++)
 		delete _blocks[i];
 
-	for(unsigned int i = 0; i < _arrows.size(); i++)
-		delete _arrows[i];
+	for(unsigned int i = 0; i < _buttons.size(); i++)
+		delete _buttons[i];
+
+	for(unsigned int i = 0; i < EXITS; i++)
+		delete _exits[i];
+}
+
+void Level::checkButtons(Player p[])
+{
+	for(unsigned int i = 0; i < _buttons.size(); i++)
+		_buttons[i]->isPressed(p);
 }
 
 bool Level::isComplete(Player p[])
@@ -248,6 +278,11 @@ bool Level::isComplete(Player p[])
 std::vector <Block*> Level::getBlocks()
 {
 	return _blocks;
+}
+
+std::vector <Button*> Level::getButtons()
+{
+	return _buttons;
 }
 
 sf::Vector2f Level::getStartPosition(int i) const
@@ -265,9 +300,9 @@ std::vector <sf::Drawable*> Level::getDrawables()
 	//Typecast all the drawables up to an sf::Drawable so they can all be
 	//processed in one go: 
 	std::vector <sf::Drawable*> drawables;
-	for(unsigned int i = 0; i < EXITS; i++)
+	for(unsigned int i = 0; i < _arrows.size(); i++)
 	{
-		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_exits[i]->getShape());
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_arrows[i]->getSprite());
 		drawables.push_back(d);
 	}
 	for(unsigned int i = 0; i < _blocks.size(); i++)
@@ -275,9 +310,14 @@ std::vector <sf::Drawable*> Level::getDrawables()
 		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_blocks[i]->getShape());
 		drawables.push_back(d);
 	}
-	for(unsigned int i = 0; i < _arrows.size(); i++)
+	for(unsigned int i = 0; i < _buttons.size(); i++)
 	{
-		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_arrows[i]->getSprite());
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_buttons[i]->getSprite());
+		drawables.push_back(d);
+	}
+	for(unsigned int i = 0; i < EXITS; i++)
+	{
+		sf::Drawable* d = dynamic_cast <sf::Drawable*>(_exits[i]->getShape());
 		drawables.push_back(d);
 	}
 	return drawables;

@@ -12,27 +12,44 @@
 * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef BUTTON_H
+#define BUTTON_H
 #include <SFML/Graphics.hpp>
-#include "../button.h"
+#include <string>
+#include "block/block.h"
+#include "../player/player.h"
 
-class Block
+class Block;
+
+class Button
 {
-	protected:
-		sf::RectangleShape _shape;
-		static const sf::Color BLOCK_COLOUR; 
+	private:
+		//Static members relating to the loading of the image files for use
+		//as textures for the sprite:
+		static const std::string BUTTON_PATHS[2];
+		static const sf::Color COLOUR_MASK;
+		static sf::Image _images[2];
+		sf::Texture _texture;
+		sf::Sprite _sprite;
+
+		//The block the button moves:
+		Block* _block;
+
+		//The possible positions of the block:
+		sf::Vector2f _blockPos[2];
+
 	public:
-		virtual ~Block() { }
-		virtual void handleEvents(float) = 0;
+		//Load the images:
+		static bool init();
 
-		//Allows a button to directly edit the position:
-		friend class Button;
+		//Constructor:
+		Button(sf::Vector2f, sf::Vector2f, Block*);
 
-		//Checks if the player is standing directly on top of the block:
-		bool isPlayerOnTop(sf::Sprite&) const;
+		//Check if the button is pressed:
+		bool isPressed(Player[]);
 
-		sf::RectangleShape* getShape();
+		//Returns the sprite:
+		sf::Sprite* getSprite(); 
 };
 
 #endif

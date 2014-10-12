@@ -3,8 +3,8 @@
       "type" : "start",
       "pos" : [
          {
-            "x" : 20,
-            "y" : 325
+            "y" : 325,
+            "x" : 20
          },
          {
             "y" : 325,
@@ -13,38 +13,38 @@
       ]
    },
    {
-      "type" : "exit",
-      "x" : 225,
+      "width" : 50,
       "y" : 325,
+      "x" : 225,
       "height" : 50,
-      "width" : 50
+      "type" : "exit"
    },
    {
-      "y" : 325,
+      "height" : 50,
       "x" : 325,
       "type" : "exit",
       "width" : 50,
-      "height" : 50
+      "y" : 325
    },
    {
+      "width" : 600,
       "y" : 375,
       "x" : 0,
-      "type" : "static",
-      "width" : 600,
-      "height" : 25
+      "height" : 25,
+      "type" : "static"
    },
    {
-      "width" : 30,
-      "height" : 600,
       "y" : 0,
+      "width" : 30,
       "type" : "static",
+      "height" : 600,
       "x" : 285
    },
    {
-      "height" : 50,
-      "width" : 15,
-      "x" : 170,
       "type" : "static",
-      "y" : 325
+      "x" : 170,
+      "height" : 50,
+      "y" : 325,
+      "width" : 15
    }
 ]

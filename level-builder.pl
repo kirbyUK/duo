@@ -230,6 +230,92 @@ my $levels =
 			y => 325,
 		},
 	],
+	[
+		4,
+		# The two start positions:
+		{
+			type => "start",
+			pos => 
+			[
+				{
+					x => 20,
+					y => 125,
+				},
+				{
+					x => 320,
+					y => 125,
+				}
+			]
+		},
+		# The two exits:
+		{
+			type => "exit",
+			width => 50,
+			height => 50,
+			x => 125,
+			y => 325
+		},
+		{
+			type => "exit",
+			width => 25,
+			height => 50,
+			x => 560,
+			y => 100
+		},
+		# The two mandatory static blocks:
+		{
+			type => "static",
+			width => 600,
+			height => 25,
+			x => 0,
+			y => 375
+		},
+		{
+			type => "static",
+			width => 30,
+			height => 600,
+			x => 285,
+			y => 0
+		},
+		# Other blocks
+		# Left side:
+		{
+			type => "static",
+			button =>
+			{
+				x => 430,
+				y => 135,
+				blockx => 0,
+				blocky => 150,
+			},
+			width => 50,
+			height => 25,
+			x => 125,
+			y => 150,
+		},
+		{
+			type => "static",
+			width => 125,
+			height => 250,
+			x => 0,
+			y => 150,
+		},
+		{
+			type => "static",
+			width => 125,
+			height => 250,
+			x => 175,
+			y => 150,
+		},
+		# Right side:
+		{
+			type => "static",
+			width => 300,
+			height => 30,
+			x => 300,
+			y => 150
+		}
+	],
 ];
 
 #Write the levels to JSON:

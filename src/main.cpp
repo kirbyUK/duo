@@ -17,6 +17,7 @@
 #include <exception>
 #include <vector>
 #include "interface/arrow.h"
+#include "level/button.h"
 #include "level/level.h"
 #include "player/player.h"
 #include "sound/music.h"
@@ -27,6 +28,9 @@ int main()
 {
 	//Attempt to load all nessecary files:
 	if(! Arrow::init())
+		return -1;
+
+	if(! Button::init())
 		return -1;
 
 	if(! Level::init())
@@ -117,9 +121,14 @@ int main()
 			player[i].move(frameTime);
 			for(unsigned int j = 0; j < level->getBlocks().size(); j++)
 				player[i].handleCollision(level->getBlocks().at(j)->getShape());
+			for(unsigned int j = 0; j < level->getButtons().size(); j++)
+				player[i].handleCollision(level->getButtons().at(j)->getSprite());
 			player[i].handleCollision(&window);
 			player[i].handleMovement();
 		}
+
+		//Check if the player has pushed any buttons:
+		level->checkButtons(player);
 
 		if(level->isComplete(player))
 		{

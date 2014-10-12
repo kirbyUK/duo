@@ -1,0 +1,77 @@
+[
+   {
+      "pos" : [
+         {
+            "x" : 20,
+            "y" : 125
+         },
+         {
+            "y" : 125,
+            "x" : 320
+         }
+      ],
+      "type" : "start"
+   },
+   {
+      "y" : 325,
+      "width" : 50,
+      "type" : "exit",
+      "x" : 125,
+      "height" : 50
+   },
+   {
+      "height" : 50,
+      "x" : 560,
+      "type" : "exit",
+      "width" : 25,
+      "y" : 100
+   },
+   {
+      "width" : 600,
+      "y" : 375,
+      "height" : 25,
+      "x" : 0,
+      "type" : "static"
+   },
+   {
+      "y" : 0,
+      "width" : 30,
+      "type" : "static",
+      "height" : 600,
+      "x" : 285
+   },
+   {
+      "height" : 25,
+      "x" : 125,
+      "button" : {
+         "x" : 430,
+         "blocky" : 150,
+         "blockx" : 0,
+         "y" : 135
+      },
+      "type" : "static",
+      "width" : 50,
+      "y" : 150
+   },
+   {
+      "type" : "static",
+      "x" : 0,
+      "height" : 250,
+      "y" : 150,
+      "width" : 125
+   },
+   {
+      "type" : "static",
+      "x" : 175,
+      "height" : 250,
+      "y" : 150,
+      "width" : 125
+   },
+   {
+      "type" : "static",
+      "x" : 300,
+      "height" : 30,
+      "y" : 150,
+      "width" : 300
+   }
+]

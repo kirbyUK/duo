@@ -14,6 +14,7 @@
 */
 #ifndef LEVEL_H
 #define LEVEL_H
+#include "button.h"
 #include "exit.h"
 #include "block/block.h"
 #include "block/staticBlock.h"
@@ -42,11 +43,15 @@ class Level
 		static const unsigned int EXITS;
 		Exit* _exits[2];
 
+		//The arrows (if any) used in the level:
+		std::vector <Arrow*> _arrows;
+
 		//The blocks used in the level:
 		std::vector <Block*> _blocks;
 
-		//The arrows (if any) used in the level:
-		std::vector <Arrow*> _arrows;
+		//The buttons (if any) used in the level:
+		std::vector <Button*> _buttons;
+
 
 		//A class to create exceptions if reading in the files fails:
 		class _LevelException : public std::exception
@@ -78,10 +83,14 @@ class Level
 		Level(const char*);
 		~Level();
 
+		//Check if any buttons are pressed:
+		void checkButtons(Player[]);
+
 		//Check if both players are in seperate exits:
 		bool isComplete(Player[]);
 
-		//Return the list of blocks:
+		//Return the list of blocks or buttons:
+		std::vector <Button*> getButtons();
 		std::vector <Block*> getBlocks();
 
 		//Return the start positions:
