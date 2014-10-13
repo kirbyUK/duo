@@ -52,7 +52,7 @@ int main()
 		std::cerr << e.what();
 		return -1;
 	}
-	int currentLevel = 0;
+	unsigned int currentLevel = 0;
 	Level* level = levels[currentLevel];
 
 	//Make the two characters, which are both controlled by the player:
@@ -132,9 +132,14 @@ int main()
 
 		if(level->isComplete(player))
 		{
-			level = levels[++currentLevel];
-			for(unsigned int i = 0; i < CHARACTERS; i++)
-				player[i].reset(level->getStartPosition(i));
+			if(++currentLevel == levels.size())
+				window.close();
+			else
+			{
+				level = levels[currentLevel];
+				for(unsigned int i = 0; i < CHARACTERS; i++)
+					player[i].reset(level->getStartPosition(i));
+			}
 		}
 
 		//Draw the frame:
