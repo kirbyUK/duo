@@ -95,6 +95,11 @@ int main()
 			}
 		}
 
+		//Reset the level if the player presses R:
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			for(unsigned int i = 0; i < CHARACTERS; i++)
+				player[i].reset(level->getStartPosition(i));
+
 		//Handle player movement:
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			for(unsigned int i = 0; i < CHARACTERS; i++)
