@@ -55,6 +55,7 @@ arrow.o: $(SRC)/interface/arrow.h $(SRC)/interface/arrow.cpp
 	$(CC) $(FLAGS) $(SRC)/interface/arrow.cpp
 
 levels: level-builder.pl
+	if [ -e assets/levels/level0.json ]; then rm assets/levels/level0.json; fi 
 	./level-builder.pl
 
 clean:
