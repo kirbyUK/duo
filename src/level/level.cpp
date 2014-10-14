@@ -214,6 +214,24 @@ Level::Level(const char* file)
 					);
 					_buttons.push_back(btn);
 				}
+				else if(type == "toggle")
+				{
+					ToggleButton* btn = new ToggleButton
+					(
+						sf::Vector2f
+						(
+							button.get("x", 0).asFloat(),
+							button.get("y", 0).asFloat()
+						),
+						sf::Vector2f
+						(
+							button.get("blockx", 0).asFloat(),
+							button.get("blocky", 0).asFloat()
+						),
+						b
+					);
+					_buttons.push_back(btn);
+				}
 				else
 				{
 					std::stringstream error;

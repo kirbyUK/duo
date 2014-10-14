@@ -20,8 +20,8 @@ extern sf::Image _images[2];
 
 bool Button::init()
 {
-//	if(! ToggleButton::init())
-//		return false;
+	if(! ToggleButton::init())
+		return false;
 
 	if(! PressureButton::init())
 		return false;
