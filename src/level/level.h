@@ -14,7 +14,7 @@
 */
 #ifndef LEVEL_H
 #define LEVEL_H
-#include "button.h"
+#include "button/button.h"
 #include "exit.h"
 #include "block/block.h"
 #include "block/staticBlock.h"

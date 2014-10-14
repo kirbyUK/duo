@@ -12,30 +12,31 @@
 * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-#ifndef BLOCK_H
-#define BLOCK_H
-#include <SFML/Graphics.hpp>
+#ifndef PRESSURE_BUTTON_H
+#define PRESSURE_BUTTON_H
+#include "button.h"
+#include "../block/block.h"
 
-class ToggleButton;
-class PressureButton;
+class Block;
 
-class Block
+class PressureButton : public Button
 {
-	//Allows a button to directly edit the position:
-	friend class ToggleButton;
-	friend class PressureButton;
+	private:
+		//Static members relating to the loading of the image files for use
+		//as textures for the sprite:
+		static const std::string BUTTON_PATHS[2];
+		static const sf::Color COLOUR_MASK;
+		static sf::Image _images[2];
 
-	protected:
-		sf::RectangleShape _shape;
-		static const sf::Color BLOCK_COLOUR; 
+		//Handles what happens when the button is actually pressed:
+		void _handlePressed(bool);
+
 	public:
-		virtual ~Block() { }
-		virtual void handleEvents(float) = 0;
+		//Load the images:
+		static bool init();
 
-		//Checks if the player is standing directly on top of the block:
-		bool isPlayerOnTop(sf::Sprite&) const;
-
-		sf::RectangleShape* getShape();
+		//Constructor:
+		PressureButton(sf::Vector2f, sf::Vector2f, Block*);
 };
 
 #endif

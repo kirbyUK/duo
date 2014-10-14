@@ -13,6 +13,8 @@
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 #include "level.h"
+#include "button/pressureButton.h"
+#include "button/toggleButton.h"
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -193,21 +195,25 @@ Level::Level(const char* file)
 			Json::Value button = element.get("button", Json::Value());
 			if(! button.empty())
 			{
-				Button* btn = new Button
-				(
-					sf::Vector2f
+				std::string type = button.get("type", "none").asString();
+				if(type == "pressure")
+				{
+					PressureButton* btn = new PressureButton
 					(
-						button.get("x", 0).asFloat(),
-						button.get("y", 0).asFloat()
-					),
-					sf::Vector2f
-					(
-						button.get("blockx", 0).asFloat(),
-						button.get("blocky", 0).asFloat()
-					),
-					b
-				);
-				_buttons.push_back(btn);
+						sf::Vector2f
+						(
+							button.get("x", 0).asFloat(),
+							button.get("y", 0).asFloat()
+						),
+						sf::Vector2f
+						(
+							button.get("blockx", 0).asFloat(),
+							button.get("blocky", 0).asFloat()
+						),
+						b
+					);
+					_buttons.push_back(btn);
+				}
 			}
 		}
 		else if(type == "arrow")

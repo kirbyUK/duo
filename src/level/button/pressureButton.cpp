@@ -12,7 +12,7 @@
 * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-#include "button.h"
+#include "pressureButton.h"
 #include <iostream>
 
 #ifndef ASSETS
@@ -20,24 +20,25 @@
 #endif
 
 #ifdef _WIN32
-	const std::string Button::BUTTON_PATHS[2] = 
+	const std::string PressureButton::BUTTON_PATHS[2] = 
 	{
-		(((std::string)ASSETS) + ((std::string)"\\sprites\\button.png")),
-		(((std::string)ASSETS) + ((std::string)"\\sprites\\button2.png"))
+		(((std::string)ASSETS) + ((std::string)"\\sprites\\p_button.png")),
+		(((std::string)ASSETS) + ((std::string)"\\sprites\\p_button2.png"))
 	};
 #else
-	const std::string Button::BUTTON_PATHS[2] = 
+	const std::string PressureButton::BUTTON_PATHS[2] = 
 	{
-		(((std::string)ASSETS) + ((std::string)"/sprites/button.png")),
-		(((std::string)ASSETS) + ((std::string)"/sprites/button2.png"))
+		(((std::string)ASSETS) + ((std::string)"/sprites/p_button.png")),
+		(((std::string)ASSETS) + ((std::string)"/sprites/p_button2.png"))
 	};
 #endif
 
-sf::Image Button::_images[2];
-//The colour to remove in the images and replace with transparency:
-const sf::Color Button::COLOUR_MASK(0, 255, 0);
+sf::Image PressureButton::_images[2];
 
-bool Button::init()
+//The colour to remove in the images and replace with transparency:
+const sf::Color PressureButton::COLOUR_MASK(0, 255, 0);
+
+bool PressureButton::init()
 {
 	for(unsigned int i = 0; i < 2; i++)
 	{
@@ -53,7 +54,8 @@ bool Button::init()
 	return true;
 }
 
-Button::Button(sf::Vector2f buttonPos, sf::Vector2f blockPos, Block* block)
+PressureButton::PressureButton(sf::Vector2f buttonPos, sf::Vector2f blockPos,
+	Block* block)
 {
 	_texture.loadFromImage(_images[0]);
 	_sprite.setTexture(_texture);
@@ -63,25 +65,8 @@ Button::Button(sf::Vector2f buttonPos, sf::Vector2f blockPos, Block* block)
 	_blockPos[1] = blockPos;
 }
 
-bool Button::isPressed(Player p[])
+void PressureButton::_handlePressed(bool isPlayerOnTop)
 {
-	//Check if either of the players are on top of the button:
-	bool isPlayerOnTop = false;
-	for(unsigned int i = 0; i < CHARACTERS; i++)
-	{
-		sf::FloatRect player = p[i].getSprite().getGlobalBounds();
-		sf::FloatRect button = _sprite.getGlobalBounds();
-		sf::FloatRect detection(
-			button.left + (player.width * 0.25),
-			button.top - (player.height * 0.15),
-			button.width - (player.width * 0.5),
-			button.height
-		);
-		if(player.intersects(detection))
-			isPlayerOnTop = true;
-	}
-
-	//Move the block and change the sprite if the button is or isn't pressed:
 	if(isPlayerOnTop)
 	{
 		_block->_shape.setPosition(_blockPos[1]);
@@ -92,10 +77,4 @@ bool Button::isPressed(Player p[])
 		_block->_shape.setPosition(_blockPos[0]);
 		_texture.update(_images[0]);
 	}
-	return isPlayerOnTop;
-}
-
-sf::Sprite* Button::getSprite()
-{
-	return &_sprite;
 }

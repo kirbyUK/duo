@@ -17,7 +17,6 @@
 #include <exception>
 #include <vector>
 #include "interface/arrow.h"
-#include "level/button.h"
 #include "level/level.h"
 #include "player/player.h"
 #include "sound/music.h"

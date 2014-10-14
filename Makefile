@@ -1,8 +1,8 @@
 CC=g++
 SRC=src
 BIN=reflect
-OBJS=	main.o player.o music.o exit.o level.o button.o block.o staticBlock.o \
-		arrow.o
+OBJS=	main.o player.o music.o exit.o level.o button.o toggleButton.o \
+		pressureButton.o block.o staticBlock.o arrow.o
 
 ifdef SystemRoot
     CCFLAGS += -D WIN32
@@ -42,8 +42,14 @@ exit.o: $(SRC)/level/exit.h $(SRC)/level/exit.cpp
 level.o: $(SRC)/level/level.h $(SRC)/level/level.cpp
 	$(CC) $(FLAGS) $(SRC)/level/level.cpp
 
-button.o: $(SRC)/level/button.h $(SRC)/level/button.cpp
-	$(CC) $(FLAGS) $(SRC)/level/button.cpp
+button.o: $(SRC)/level/button/button.h $(SRC)/level/button/button.cpp
+	$(CC) $(FLAGS) $(SRC)/level/button/button.cpp
+
+pressureButton.o: $(SRC)/level/button/pressureButton.h $(SRC)/level/button/pressureButton.cpp
+	$(CC) $(FLAGS) $(SRC)/level/button/pressureButton.cpp
+
+toggleButton.o: $(SRC)/level/button/toggleButton.h $(SRC)/level/button/toggleButton.cpp
+	$(CC) $(FLAGS) $(SRC)/level/button/toggleButton.cpp
 
 block.o: $(SRC)/level/block/block.h $(SRC)/level/block/block.cpp
 	$(CC) $(FLAGS) $(SRC)/level/block/block.cpp

@@ -12,30 +12,42 @@
 * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef BUTTON_H
+#define BUTTON_H
 #include <SFML/Graphics.hpp>
+#include <string>
+#include "../block/block.h"
+#include "../../player/player.h"
 
-class ToggleButton;
-class PressureButton;
+class Block;
 
-class Block
+class Button
 {
-	//Allows a button to directly edit the position:
-	friend class ToggleButton;
-	friend class PressureButton;
-
 	protected:
-		sf::RectangleShape _shape;
-		static const sf::Color BLOCK_COLOUR; 
+		//The texture and the sprite:
+		sf::Texture _texture;
+		sf::Sprite _sprite;
+
+		//The block the button moves:
+		Block* _block;
+
+		//The possible positions of the block:
+		sf::Vector2f _blockPos[2];
+
+		//Handles what happens when the button is actually pressed:
+		virtual void _handlePressed(bool) = 0;
+
 	public:
-		virtual ~Block() { }
-		virtual void handleEvents(float) = 0;
+		//Initalises all the child classes:
+		static bool init();
 
-		//Checks if the player is standing directly on top of the block:
-		bool isPlayerOnTop(sf::Sprite&) const;
+		virtual ~Button() { };
 
-		sf::RectangleShape* getShape();
+		//Check if the button is pressed:
+		bool isPressed(Player[]);
+
+		//Returns the sprite:
+		sf::Sprite* getSprite(); 
 };
 
 #endif

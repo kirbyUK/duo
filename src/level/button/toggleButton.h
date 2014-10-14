@@ -12,16 +12,14 @@
 * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-#ifndef BUTTON_H
-#define BUTTON_H
-#include <SFML/Graphics.hpp>
-#include <string>
-#include "block/block.h"
-#include "../player/player.h"
+#ifndef TOGGLE_BUTTON_H
+#define TOGGLE_BUTTON_H
+#include "button.h"
+#include "../block/block.h"
 
 class Block;
 
-class Button
+class ToggleButton : public Button
 {
 	private:
 		//Static members relating to the loading of the image files for use
@@ -29,27 +27,16 @@ class Button
 		static const std::string BUTTON_PATHS[2];
 		static const sf::Color COLOUR_MASK;
 		static sf::Image _images[2];
-		sf::Texture _texture;
-		sf::Sprite _sprite;
 
-		//The block the button moves:
-		Block* _block;
-
-		//The possible positions of the block:
-		sf::Vector2f _blockPos[2];
+		//Handles what happens when the button is actually pressed:
+		void _handlePressed(bool);
 
 	public:
 		//Load the images:
 		static bool init();
 
 		//Constructor:
-		Button(sf::Vector2f, sf::Vector2f, Block*);
-
-		//Check if the button is pressed:
-		bool isPressed(Player[]);
-
-		//Returns the sprite:
-		sf::Sprite* getSprite(); 
+		ToggleButton(sf::Vector2f, sf::Vector2f, Block*);
 };
 
 #endif
