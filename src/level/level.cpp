@@ -214,6 +214,14 @@ Level::Level(const char* file)
 					);
 					_buttons.push_back(btn);
 				}
+				else
+				{
+					std::stringstream error;
+					error	<< "Failed to parse file '" << file 
+							<< "': Button with no type found\n";
+					_LevelException ex(error.str().c_str());
+					throw ex;
+				}
 			}
 		}
 		else if(type == "arrow")
