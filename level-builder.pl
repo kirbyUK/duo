@@ -283,6 +283,7 @@ my $levels =
 			type => "static",
 			button =>
 			{
+				type => "pressure",
 				x => 430,
 				y => 135,
 				blockx => 0,
@@ -315,6 +316,136 @@ my $levels =
 			x => 300,
 			y => 150
 		}
+	],
+	[
+		5,
+		# The two start positions:
+		{
+			type => "start",
+			pos => 
+			[
+				{
+					x => 20,
+					y => 125,
+				},
+				{
+					x => 320,
+					y => 125,
+				}
+			]
+		},
+		# The two exits:
+		{
+			type => "exit",
+			width => 25,
+			height => 50,
+			x => 235,
+			y => 25
+		},
+		{
+			type => "exit",
+			width => 25,
+			height => 50,
+			x => 340,
+			y => 25
+		},
+		# The two mandatory static blocks:
+		{
+			type => "static",
+			width => 600,
+			height => 25,
+			x => 0,
+			y => 375
+		},
+		{
+			type => "static",
+			width => 30,
+			height => 600,
+			x => 285,
+			y => 0
+		},
+		# Other blocks
+		# Left side:
+		{
+			type => "static",
+			width => 300,
+			height => 20,
+			x => 0,
+			y => 200
+		},
+		{
+			type => "static",
+			width => 75,
+			height => 25,
+			x => 210,
+			y => 75
+		},
+		{
+			type => "static",
+			width => 75,
+			height => 25,
+			x => 0,
+			y => 75
+		},
+		{
+			type => "static",
+			button =>
+			{
+				type => "toggle",
+				x => 530,
+				y => 170,
+				blockx => 75,
+				blocky => 137.5
+			},
+			width => 135,
+			height => 25,
+			x => 75,
+			y => 75,
+		},
+		# Right side:
+		{
+			type => "static",
+			width => 300,
+			height => 20,
+			x => 300,
+			y => 200
+		},
+		{
+			type => "static",
+			width => 75,
+			height => 25,
+			x => 315,
+			y => 75
+		},
+		{
+			type => "static",
+			width => 75,
+			height => 25,
+			x => 525,
+			y => 75
+		},
+		{
+			type => "static",
+			width => 25,
+			height => 15,
+			x => 530,
+			y => 185,
+		},
+		{
+			type => "static",
+			button =>
+			{
+				type => "toggle",
+				x => 40,
+				y => 60,
+				blockx => 390,
+				blocky => 137.5
+			},
+			width => 135,
+			height => 25,
+			x => 390,
+			y => 75,
+		},
 	],
 ];
 
