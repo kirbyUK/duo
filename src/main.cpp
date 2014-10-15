@@ -72,8 +72,10 @@ int main()
 	bool isSpaceHit = false;
 	sf::Clock frameTimer;
 	float frameTime = 0.0016;
+	int frame = 0;
 	while(window.isOpen())
 	{
+		std::cout << frame++ << std::endl;
 		while(window.pollEvent(event))
 		{
 			if(event.type == sf::Event::Closed)

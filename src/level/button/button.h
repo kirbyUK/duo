@@ -44,7 +44,7 @@ class Button
 		virtual ~Button() { };
 
 		//Check if the button is pressed:
-		bool isPressed(Player[]);
+		void isPressed(Player);
 
 		//Returns the sprite:
 		sf::Sprite* getSprite(); 

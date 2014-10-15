@@ -29,25 +29,18 @@ bool Button::init()
 	return true;
 }
 
-bool Button::isPressed(Player p[])
+void Button::isPressed(Player p)
 {
 	//Check if either of the players are on top of the button:
-	bool isPlayerOnTop = false;
-	for(unsigned int i = 0; i < CHARACTERS; i++)
-	{
-		sf::FloatRect player = p[i].getSprite().getGlobalBounds();
-		sf::FloatRect button = _sprite.getGlobalBounds();
-		sf::FloatRect detection(
-			button.left + (player.width * 0.25),
-			button.top - (player.height * 0.15),
-			button.width - (player.width * 0.5),
-			button.height
-		);
-		if(player.intersects(detection))
-			isPlayerOnTop = true;
-	}
-	_handlePressed(isPlayerOnTop);
-	return isPlayerOnTop;
+	sf::FloatRect player = p.getSprite().getGlobalBounds();
+	sf::FloatRect button = _sprite.getGlobalBounds();
+	sf::FloatRect detection(
+		button.left + (player.width * 0.25),
+		button.top - (player.height * 0.15),
+		button.width - (player.width * 0.5),
+		button.height
+	);
+	_handlePressed(player.intersects(detection));
 }
 
 sf::Sprite* Button::getSprite()

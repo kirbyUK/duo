@@ -64,24 +64,22 @@ ToggleButton::ToggleButton(sf::Vector2f buttonPos, sf::Vector2f blockPos,
 	_blockPos[0] = _block->_shape.getPosition();
 	_blockPos[1] = blockPos;
 	_isActive = false;
+	_lastTime = false;
 }
 
 void ToggleButton::_handlePressed(bool isPlayerOnTop)
 {
-	static bool lastTime = false;
-	if((isPlayerOnTop) && (isPlayerOnTop != lastTime))
-	{
+	if((isPlayerOnTop) && (! _lastTime))
 		_isActive = !_isActive;
-	}
-	lastTime = isPlayerOnTop;
-
-	if(isPlayerOnTop)
-		_texture.update(_images[1]);
-	else
-		_texture.update(_images[0]);
+	_lastTime = isPlayerOnTop;
 
 	if(_isActive)
 		_block->_shape.setPosition(_blockPos[1]);
 	else
 		_block->_shape.setPosition(_blockPos[0]);
+
+	if(isPlayerOnTop)
+		_texture.update(_images[1]);
+	else
+		_texture.update(_images[0]);
 }

@@ -299,8 +299,16 @@ Level::~Level()
 
 void Level::checkButtons(Player p[])
 {
+	//Use some kind of smart-ness to check which player should be checked for
+	//which buttons:
 	for(unsigned int i = 0; i < _buttons.size(); i++)
-		_buttons[i]->isPressed(p);
+	{
+		float buttonX = _buttons[i]->getSprite()->getGlobalBounds().left;
+		if(buttonX <= 300)
+			_buttons[i]->isPressed(p[0]);
+		else
+			_buttons[i]->isPressed(p[1]);
+	}
 }
 
 bool Level::isComplete(Player p[])

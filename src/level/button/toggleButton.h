@@ -29,7 +29,7 @@ class ToggleButton : public Button
 		static sf::Image _images[2];
 
 		//This button toggles on and off with each switch:
-		bool _isActive;
+		bool _isActive, _lastTime;
 
 		//Handles what happens when the button is actually pressed:
 		void _handlePressed(bool);
