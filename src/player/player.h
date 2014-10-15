@@ -14,6 +14,7 @@
 */
 #ifndef PLAYER_H
 #define PLAYER_H
+#include <type_traits>
 #include <SFML/Graphics.hpp>
 #include <string>
 //#include "../sound/sfx.h"
@@ -83,9 +84,9 @@ class Player
 		void move(Direction, float);//Handles x-direction movement.
 
 		//Process events at the end of the frame:
-		void handleCollision(sf::RectangleShape*);
-		void handleCollision(sf::Sprite*);
-		void handleCollision(sf::Window*);
+		void handleCollision(sf::RenderWindow*);
+		template<typename T>
+		void handleCollision(T*);
 		void handleMovement();
 
 		//Getters:
