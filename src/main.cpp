@@ -62,7 +62,7 @@ int main()
 	};
 
 	//Make the window:
-	sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Reflect",
+	sf::RenderWindow window(sf::VideoMode(WINDOW_X, WINDOW_Y), "Duo",
 		sf::Style::Close);
 	sf::Event event;
 

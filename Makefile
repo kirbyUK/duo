@@ -1,6 +1,6 @@
 CC=g++
 SRC=src
-BIN=reflect
+BIN=duo
 OBJS=	main.o player.o music.o exit.o level.o button.o toggleButton.o \
 		pressureButton.o block.o staticBlock.o arrow.o
 
@@ -8,7 +8,7 @@ ifdef SystemRoot
     CCFLAGS += -D WIN32
 	SFML_PATH=..\lib\SFML-2.1
 	JSONCPP_PATH=..\lib\jsoncpp
-    FLAGS=-Wall -Werror -c -O3 -I$(SFML_PATH)\include -I$(JSONCPP_PATH)\include
+    FLAGS=-Wall -Werror -c -std=c++11 -O3 -I$(SFML_PATH)\include -I$(JSONCPP_PATH)\include
     LIBS=-L$(SFML_PATH)\lib -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -L$(JSONCPP_PATH)\lib -ljsoncpp
 #   DESTDIR="\""C:\Program Files (x86)"\""
 #	ASSETS_DIR="$(DESTDIR)\\$(BIN)\\assets"
@@ -18,7 +18,7 @@ ifdef SystemRoot
 #	HIGHSCORE="highscore"
 #	LOCKFILE="lockfile"
 else
-	FLAGS=-Wall -Werror -c -g -I/usr/include/jsoncpp/
+	FLAGS=-Wall -Werror -std=c++11 -c -g -I/usr/include/jsoncpp/
 	LIBS=-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ljsoncpp
 endif
 
