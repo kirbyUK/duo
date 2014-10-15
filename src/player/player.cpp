@@ -17,8 +17,6 @@
 #include <fstream>
 #include <cmath>
 
-//there'll be an enum here to give each image a useful name
-
 #ifndef ASSETS
 	#define ASSETS "assets"
 #endif
@@ -42,13 +40,6 @@ const sf::Color Player::COLOUR_MASK(0, 255, 0);
 //The array storing all the images once they've been loaded:
 sf::Image Player::_sprites[SPRITES];
 
-/*//The file path of the file containing the player's highscore:
-#ifndef HIGHSCORE
-	#define HIGHSCORE "highscore"
-#endif
-
-const char* Player::HIGHSCORE_FILE = HIGHSCORE;*/
-
 //How many pixels the character will move after a second of constant motion in
 //that direction:
 const float Player::X_VELOCITY = 300.0;
@@ -57,10 +48,6 @@ const float Player::Y_VELOCITY = 400.0;
 //The maximum and minimum jump height in pixels:
 const float Player::MAX_JUMP_HEIGHT = 70.0;
 const float Player::MIN_JUMP_HEIGHT = MAX_JUMP_HEIGHT / 2;
-
-/*//The player's score:
-unsigned int Player::_score;
-unsigned int Player::_highscore;*/
 
 //Attempts to load up all the images, must be called before the constructor:
 bool Player::init()
@@ -79,11 +66,6 @@ bool Player::init()
 	return true;
 }
 
-/*const sf::Uint8* Player::getPixelsPointer()
-{
-	return _sprites[0].getPixelsPtr();
-}*/
-
 Player::Player(sf::Vector2f v)
 {	
 	//Load the texture from the image:
@@ -93,18 +75,7 @@ Player::Player(sf::Vector2f v)
 	//Set the initial position:
 	_sprite.setPosition(v);
 
-/*	//Get the previous highscore:
-	std::ifstream file(HIGHSCORE_FILE);
-	if(! file)
-		_highscore = 0;
-	else
-	{
-		file >> _highscore;
-		file.close();
-	}
-
 	//Initalise everything else:
-	_score = 0;*/
 	_isJumping = false;
 	_canJump = true;
 	_maxJumpHeight = MAX_JUMP_HEIGHT;
@@ -119,12 +90,6 @@ void Player::reset(sf::Vector2f v)
 	//Set the initial position:
 	_sprite.setPosition(v);
 
-/*	//Check if the high score needs changing:
-	if(_score > _highscore)
-		_highscore = _score;
-	
-	//Reset everything else:
-	_score = 0;*/
 	_isJumping = false;
 	_canJump = true;
 	_maxJumpHeight = MAX_JUMP_HEIGHT;
@@ -194,31 +159,6 @@ void Player::move(Direction d, float frameTime)
 		case RIGHT: _distance.player.x = RIGHT * (X_VELOCITY * frameTime); break;
 	}
 }
-
-//Gives a distance to offset the movement by, given by a DynamicBlock:
-/*void Player::move(DynamicBlock* b)
-{
-	//If the player is just standing on top of the block, then we can move
-	//it as normal:
-	if(b->isPlayerOnTop(_sprite))
-		_distance.block += b->getDistanceMoved();
-	else
-	{
-		//Otherwise, work out which axis we need to move in. This works the same
-		//as collision detection - check the intersection and see which side is
-		//longest:
-		sf::FloatRect detectionBox = b->getDetectionBox(_sprite), intersection;
-		if(_sprite.getGlobalBounds().intersects(detectionBox, intersection))
-		{
-			if(intersection.width < intersection.height)
-				_distance.block.x += b->getDistanceMoved().x;
-			else if(intersection.width > intersection.height)
-				_distance.block.y += b->getDistanceMoved().y;
-			else if(intersection.width == intersection.height)
-				_distance.block += b->getDistanceMoved();
-		}
-	}
-}*/
 
 //Checks if the proposed movement will cause a collision, and intervenes if so:
 void Player::handleCollision(sf::RectangleShape* s)
@@ -437,47 +377,10 @@ void Player::handleMovement()
 	_resetVectors();
 }
 
-/*void Player::addPoint()
-{
-	_score++;
-	_sfx.play(POINT);
-}*/
-
-/*void Player::kill()
-{
-	_sfx.play(DEATH);
-}*/
-
-/*bool Player::writeScoreToFile()
-{
-	std::ofstream file(HIGHSCORE_FILE);
-	if(! file)
-	{
-		std::cerr << "Unable to write to '" << HIGHSCORE_FILE << "'\n";
-		return false;
-	}
-	else
-	{
-		file << _score;
-		file.close();
-		return true;
-	}
-}*/
-
 sf::Sprite& Player::getSprite()
 {
 	return _sprite;
 }
-
-/*unsigned int Player::getScore() const
-{
-	return _score;
-}
-
-unsigned int Player::getHighScore() const
-{
-	return _highscore;
-}*/
 
 //Simplifies resetting the vectors as it's repeated quite a bit:
 void Player::_resetVectors()

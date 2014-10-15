@@ -17,7 +17,6 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 //#include "../sound/sfx.h"
-//#include "../block/dynamicBlock.h"
 
 enum Direction { LEFT = -1, RIGHT = 1 };
 const unsigned int CHARACTERS = 2;
@@ -54,11 +53,6 @@ class Player
 		struct Distance { sf::Vector2f player, block, offset, total; } _distance;
 		void _resetVectors();
 
-		//Score related variables:
-/*		static const char* HIGHSCORE_FILE;
-		static unsigned int _score;
-		static unsigned int _highscore;*/
-
 /*		//Sound effects:
 		SoundEffect _sfx;*/
 
@@ -71,9 +65,6 @@ class Player
 	public:
 		//Load the images:
 		static bool init();
-
-/*		//Return the array of pixels, for the icon:
-		static const sf::Uint8* getPixelsPointer();*/
 
 		//Constructor:
 		Player(sf::Vector2f);
@@ -90,7 +81,6 @@ class Player
 		//Signal the player to move in the given direction:
 		void move(float); 			//Handles y-direction movement.
 		void move(Direction, float);//Handles x-direction movement.
-		//void move(DynamicBlock*);	//Handles movement from a DynamicBlock.
 
 		//Process events at the end of the frame:
 		void handleCollision(sf::RectangleShape*);
@@ -98,19 +88,8 @@ class Player
 		void handleCollision(sf::Window*);
 		void handleMovement();
 
-/*		//Give the player a point:
-		void addPoint();*/
-
-/*		//Kill the player:
-		void kill();*/
-
-/*		//Write the highscore to the highscore file:
-		bool writeScoreToFile();*/
-
 		//Getters:
 		sf::Sprite& getSprite();
-/*		unsigned int getScore() const;
-		unsigned int getHighScore() const;*/
 };
 
 #endif
