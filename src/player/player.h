@@ -51,7 +51,7 @@ class Player
 		//across the input from the player, input from a DynamicBlock, and an
 		//offset that is subtracted if there is a collision:
 		static const float X_VELOCITY, Y_VELOCITY;
-		struct Distance { sf::Vector2f player, block, offset, total; } _distance;
+		struct Distance { sf::Vector2f player, offset, total; } _distance;
 		void _resetVectors();
 
 /*		//Sound effects:
@@ -103,11 +103,11 @@ void Player::handleCollision(T* s)
 	//Create a new Rect representing the player after the proposed movement:
 	float x = (
 		(_sprite.getGlobalBounds().left) + 
-		(_distance.player.x + _distance.block.x)
+		(_distance.player.x)
 	);
 	float y = (
 		(_sprite.getGlobalBounds().top) + 
-		(_distance.player.y + _distance.block.y)
+		(_distance.player.y)
 	);
 
 	sf::FloatRect r(x, y,
@@ -133,15 +133,13 @@ void Player::handleCollision(T* s)
 		//Now we do the same again:
 		x = (
 			(_sprite.getGlobalBounds().left) +
-			(_distance.player.x + _distance.block.x) -
-			(_getDirection(_distance.player.x + _distance.block.x) * 
-			_distance.offset.x)
+			(_distance.player.x) -
+			(_getDirection(_distance.player.x) * _distance.offset.x)
 		);
 		y = (
 			(_sprite.getGlobalBounds().top) +
-			(_distance.player.y + _distance.block.y) -
-			(_getDirection(_distance.player.y + _distance.block.y) * 
-			_distance.offset.y)
+			(_distance.player.y) -
+			(_getDirection(_distance.player.y) * _distance.offset.y)
 		);
 
 		r.left = x;

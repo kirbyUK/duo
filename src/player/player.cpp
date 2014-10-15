@@ -166,15 +166,13 @@ void Player::handleCollision(sf::RenderWindow* window)
 	//Create a new Rect representing the player after the proposed movement:
 	float x = (
 		(_sprite.getGlobalBounds().left) +
-		(_distance.player.x + _distance.block.x) -
-		(_getDirection(_distance.player.x + _distance.block.x) * 
-		_distance.offset.x)
+		(_distance.player.x) -
+		(_getDirection(_distance.player.x) * _distance.offset.x)
 	);
 	float y = (
 		(_sprite.getGlobalBounds().top) +
-		(_distance.player.y + _distance.block.y) -
-		(_getDirection(_distance.player.y + _distance.block.y) * 
-		_distance.offset.y)
+		(_distance.player.y) -
+		(_getDirection(_distance.player.y) * _distance.offset.y)
 	);
 
 	sf::FloatRect r(x, y,
@@ -196,14 +194,12 @@ void Player::handleCollision(sf::RenderWindow* window)
 void Player::handleMovement()
 {
 	_distance.total.x = (
-		(_distance.player.x + _distance.block.x) -
-		(_getDirection(_distance.player.x + _distance.block.x) * 
-		_distance.offset.x)
+		(_distance.player.x) -
+		(_getDirection(_distance.player.x) * _distance.offset.x)
 	);
 	_distance.total.y = (
-		(_distance.player.y + _distance.block.y) -
-		(_getDirection(_distance.player.y + _distance.block.y) * 
-		_distance.offset.y)
+		(_distance.player.y) -
+		(_getDirection(_distance.player.y) * _distance.offset.y)
 	);
 
 	//Move the player:
@@ -262,8 +258,6 @@ void Player::_resetVectors()
 	//Reset the vectors:
 	_distance.player.x = 0;
 	_distance.player.y = 0;
-	_distance.block.x = 0;
-	_distance.block.y = 0;
 	_distance.offset.x = 0;
 	_distance.offset.y = 0;
 	_distance.total.x = 0;
