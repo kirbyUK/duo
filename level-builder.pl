@@ -346,7 +346,7 @@ my $levels =
 			type => "exit",
 			width => 25,
 			height => 50,
-			x => 340,
+			x => 575,
 			y => 25
 		},
 		# The two mandatory static blocks:

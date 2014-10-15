@@ -13,108 +13,108 @@
       ]
    },
    {
-      "type" : "exit",
+      "height" : 50,
       "width" : 25,
-      "x" : 235,
-      "height" : 50,
-      "y" : 25
-   },
-   {
-      "height" : 50,
       "y" : 25,
-      "width" : 25,
       "type" : "exit",
-      "x" : 340
+      "x" : 235
    },
    {
-      "y" : 375,
+      "type" : "exit",
+      "x" : 575,
+      "width" : 25,
+      "y" : 25,
+      "height" : 50
+   },
+   {
       "height" : 25,
-      "x" : 0,
+      "y" : 375,
       "width" : 600,
+      "x" : 0,
       "type" : "static"
    },
    {
-      "y" : 0,
-      "height" : 600,
+      "type" : "static",
       "x" : 285,
       "width" : 30,
-      "type" : "static"
+      "y" : 0,
+      "height" : 600
    },
    {
+      "type" : "static",
+      "x" : 0,
+      "y" : 200,
       "width" : 300,
-      "type" : "static",
-      "x" : 0,
-      "height" : 20,
-      "y" : 200
+      "height" : 20
    },
    {
       "height" : 25,
-      "y" : 75,
       "width" : 75,
-      "type" : "static",
-      "x" : 210
-   },
-   {
       "y" : 75,
-      "height" : 25,
-      "x" : 0,
-      "width" : 75,
+      "x" : 210,
       "type" : "static"
    },
    {
-      "height" : 25,
+      "width" : 75,
       "y" : 75,
+      "x" : 0,
       "type" : "static",
-      "width" : 135,
+      "height" : 25
+   },
+   {
+      "x" : 75,
+      "type" : "static",
       "button" : {
-         "x" : 530,
-         "type" : "toggle",
          "blockx" : 75,
          "y" : 170,
-         "blocky" : 137.5
+         "blocky" : 137.5,
+         "x" : 530,
+         "type" : "toggle"
       },
-      "x" : 75
-   },
-   {
-      "height" : 20,
-      "y" : 200,
-      "type" : "static",
-      "width" : 300,
-      "x" : 300
-   },
-   {
-      "y" : 75,
-      "height" : 25,
-      "x" : 315,
-      "type" : "static",
-      "width" : 75
-   },
-   {
-      "x" : 525,
-      "width" : 75,
-      "type" : "static",
+      "width" : 135,
       "y" : 75,
       "height" : 25
    },
    {
+      "x" : 300,
+      "type" : "static",
+      "width" : 300,
+      "y" : 200,
+      "height" : 20
+   },
+   {
+      "x" : 315,
+      "type" : "static",
+      "y" : 75,
+      "width" : 75,
+      "height" : 25
+   },
+   {
+      "height" : 25,
+      "y" : 75,
+      "width" : 75,
+      "type" : "static",
+      "x" : 525
+   },
+   {
+      "height" : 15,
       "x" : 530,
       "type" : "static",
       "width" : 25,
-      "y" : 185,
-      "height" : 15
+      "y" : 185
    },
    {
+      "height" : 25,
       "x" : 390,
       "button" : {
-         "y" : 60,
-         "blocky" : 137.5,
          "x" : 40,
+         "blocky" : 137.5,
          "type" : "toggle",
+         "y" : 60,
          "blockx" : 390
       },
-      "width" : 135,
       "type" : "static",
       "y" : 75,
-      "height" : 25
+      "width" : 135
    }
 ]
