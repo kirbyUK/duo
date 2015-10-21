@@ -1,8 +1,8 @@
 # duo
 
-![header](http://vgdsoc.uwcs.co.uk/sites/default/files/styles/header/public/game_images/headed.png?itok=GYFlfMrq)
+![header](https://www.warwickgamedesign.co.uk/sites/default/files/styles/header/public/game_images/headed.png?itok=GYFlfMrq)
 
-A small platformer game created for my first ever [WGD](http://vgdsoc.uwcs.co.uk/)
+A small platformer game created for my first ever [WGD](https://www.warwickgamedesign.co.uk/)
 two-week competition. It pulls most of the code from my first game
 [platformer](https://github.com/kirbyUK/platformer), and some of the changes made in this
 eventually found it's way back to there.
